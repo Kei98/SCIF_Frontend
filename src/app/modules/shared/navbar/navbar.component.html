@@ -1,70 +1,116 @@
-<!-- <nav class="navbar navbar-light">
-    <ul>
-      <li><a routerLink="/products/add">Products</a></li>
-      <li><a>About</a></li>
-      <li><a>Contact</a></li>
-    </ul>
-  </nav> -->
-
-  <nav class="navbar navbar-expand-lg navbar-light">
-    <div class="container-fluid justify-content-between">
-      <!-- Left elements -->
-      <div class="d-flex">
-        <!-- Brand -->
-        <a class="navbar-brand me-2 mb-1 d-flex align-items-center" href="#">
-          <img
-            src="https://automatizacionsv.com/wp-content/uploads/2023/03/LocoWeb.png"
-            height="50"
-            alt=""
-            loading="lazy"
-            style="margin-top: 2px;"
-          />
-        </a>
-      </div>
-
-      <!-- Right elements -->
-    <ul class="navbar-nav flex-row">
-      <li class="nav-item me-3 me-lg-1">
-        <a class="nav-link d-sm-flex align-items-sm-center" href="#">
-          <fa-icon [icon]="user_icon"></fa-icon>
-          <i class="fa-solid fa-user"></i>
-          <strong class="d-none d-sm-block ms-1">User</strong>
-        </a>
-      </li>
-      <li class="nav-item me-3 me-lg-1">
-        <a class="nav-link" href="#">
-          <span><i class="fas fa-plus-circle fa-lg"></i></span>
-        </a>
-      </li>
-      <li mdbDropdown class="nav-item dropdown me-3 me-lg-1">
-        <a
-          class="nav-link dropdown-toggle hidden-arrow"
-          href="#"
-          id="navbarDropdownMenuLink"
-          role="button"
-          mdbDropdownToggle
-          aria-expanded="false"
-        >
-          <i class="fas fa-comments fa-lg"></i>
-
-          <span class="badge rounded-pill badge-notification bg-danger">6</span>
-        </a>
-        <ul
-          mdbDropdownMenu
-          class="dropdown-menu dropdown-menu-end"
-          aria-labelledby="navbarDropdownMenuLink"
-        >
-          <li>
-            <a class="dropdown-item" href="#">Some news</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#">Another news</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </li>
-        </ul>
-      </li>
-    </ul>
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container-fluid">
+    <div class="d-flex">
+      <a class="navbar-brand" href="#">
+        <img
+          src="https://automatizacionsv.com/wp-content/uploads/2023/03/LocoWeb.png"
+          height="50"
+          alt=""
+          loading="lazy"
+          style="margin-top: 2px"
+        />
+      </a>
     </div>
-  </nav>
+    <button
+      class="navbar-toggler navbar-toggler-right"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbar1"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar1">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Link1</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            href="#"
+            id="menu"
+            data-bs-toggle="dropdown"
+            class="nav-link dropdown-toggle"
+            data-bs-display="static"
+            >Dropdown</a
+          >
+          <ul class="dropdown-menu">
+            <li class="dropdown-submenu">
+              <a
+                href="#"
+                data-bs-toggle="dropdown"
+                class="dropdown-item dropdown-toggle"
+                >Submenu 1</a
+              >
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="#" class="dropdown-item">Item 1</a>
+                </li>
+                <li>
+                  <a href="#" class="dropdown-item">Item 2</a>
+                </li>
+                <li>
+                  <a href="#" class="dropdown-item">Item 3</a>
+                </li>
+              </ul>
+            </li>
+            <li class="dropdown-submenu">
+              <a
+                href="#"
+                data-bs-toggle="dropdown"
+                class="dropdown-item dropdown-toggle"
+                >Submenu 2</a
+              >
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="#" class="dropdown-item">Item a</a>
+                </li>
+                <li>
+                  <a href="#" class="dropdown-item">Item b</a>
+                </li>
+                <li>
+                  <a href="#" class="dropdown-item">Item c</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a routerLink="/products/add" class="nav-link">Products</a>
+        </li>
+
+        <li class="nav-item">
+          <a
+            href="#"
+            id="menu"
+            data-bs-toggle="dropdown"
+            class="nav-link d-sm-flex align-items-sm-center"
+            data-bs-display="static"
+          >
+            <fa-icon [icon]="user_icon"></fa-icon>
+            <i class="fa-solid fa-user"></i>
+            <strong class="d-none d-sm-block ms-1">User</strong>
+          </a>
+          <ul class="dropdown-menu">
+            <li class="dropdown-submenu">
+              <a
+                href="#"
+                data-bs-toggle="dropdown"
+                class="dropdown-item"
+                >My Profile</a
+              >
+            </li>
+            <li class="dropdown-submenu">
+              <a
+                href="#"
+                data-bs-toggle="dropdown"
+                class="dropdown-item"
+                >Log Out</a
+              >
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
