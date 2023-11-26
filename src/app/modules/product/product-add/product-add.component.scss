@@ -45,6 +45,8 @@
 
 .dropdown-list {
   width: 245px;
+  position: absolute;
+  background-color: #f6f6f6;
   & li:hover {
     background-color: #0c36f1;
     color: white;

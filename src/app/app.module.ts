@@ -8,19 +8,21 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SharedModule } from './modules/shared/shared.module';
 import { NotFoundComponent } from './modules/shared/not-found/not-found.component';
 import { NavbarComponent } from './modules/shared/navbar/navbar.component';
+// import { DataTablesModule } from 'angular-datatables';
 
 @NgModule({
   declarations: [
     AppComponent,
     NotFoundComponent,
-    NavbarComponent
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ProductModule,
     FontAwesomeModule,
-    SharedModule
+    SharedModule,
+    // DataTablesModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

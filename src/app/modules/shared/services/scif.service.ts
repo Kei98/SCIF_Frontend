@@ -23,4 +23,8 @@ export class SCIFService extends ManagerService{
   getProductSheetData(): Observable<any> {
     return this.http.get(environment.URL + 'productsheets.json');
   }
+
+  getProductData(): Observable<any> {
+    return this.http.get(environment.URL + 'products.json');
+  }
 }

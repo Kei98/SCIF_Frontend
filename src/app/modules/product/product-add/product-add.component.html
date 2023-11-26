@@ -11,7 +11,7 @@
         <div id="inputGroup" class="input-group">
             <fa-icon [icon]="icon"></fa-icon>
             <input (click)="showDropDown()" autocomplete="off" (blur)="onBlur($event)" (focus)="onFocus($event)" 
-            type="text" placeholder="Search.." id="myInput" (keyup)="filterFunction()" (keyup.enter)="showDropDown()">
+            type="text" placeholder="Search.." id="myInput" (keyup)="filterFunction()" (keyup.enter)="showDropDown()" class="dropbtn">
         </div>
         <div id="myDropdown" class="dropdown-content">
             
@@ -23,4 +23,14 @@
             </div>
         </div>
      </div>
+     <label for="product_info_quantity">Existencias:</label><br>
+    <input type="number" id="product_info_quantity" name="product_info_quantity" min="0" appearance="none"><br>
+    <label for="product_info_cost">Costo del Producto:</label><br>
+    <input type="number" id="product_info_cost" name="product_info_cost" min="0.00"><br>
+    <label for="product_info_price">Precio del Producto:</label><br>
+    <input type="number" id="product_info_price" name="product_info_price" min="0.00"><br>
+
+    <div class="data-table">
+        <app-data-table [columns]="products_property_name" [data]="products_list"></app-data-table>
+    </div>
 </form>
