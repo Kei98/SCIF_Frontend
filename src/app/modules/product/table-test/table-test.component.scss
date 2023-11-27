@@ -1,0 +1,42 @@
+td{
+    border: 1px solid black;
+}
+
+th{
+    border: 1px solid black;
+}
+
+table{
+    border: 1px solid black;
+}
+
+.main-container{
+    margin: 0 auto;
+    width: 500px;
+    // background-color: lightblue;
+}
+
+input{
+    width: 100%;
+    margin: 10px 0px 10px 0px;
+}
+
+.hidden{
+    display: none;
+}
+
+.not-found{
+    display: block;
+}
+
+.first-col{
+    width: 50px;
+}
+
+.second-col{
+    width: 100px;
+}
+
+.third-col{
+    width: 350px;
+}

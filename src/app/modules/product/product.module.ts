@@ -6,6 +6,7 @@ import { ProductRoutingModule } from './product-routing.module';
 import { ProductAddComponent } from './product-add/product-add.component';
 import { ProductGetComponent } from './product-get/product-get.component';
 import { SharedModule } from '../shared/shared.module';
+import { TableTestComponent } from './table-test/table-test.component';
 // import { DataTableComponent } from '../shared/data-table/data-table.component';
 
 
@@ -13,6 +14,7 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [
     ProductAddComponent,
     ProductGetComponent,
+    TableTestComponent,
 
   ],
   imports: [

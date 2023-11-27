@@ -31,6 +31,7 @@
     <input type="number" id="product_info_price" name="product_info_price" min="0.00"><br>
 
     <div class="data-table">
-        <app-data-table [columns]="products_property_name" [data]="products_list"></app-data-table>
+        <input type="text" (keyup)="searchFn($event)" id="searchInput" placeholder="Search Name or Description">
+        <app-data-table [columns]="products_property_name" [data]="products_list" class="table"></app-data-table>
     </div>
 </form>

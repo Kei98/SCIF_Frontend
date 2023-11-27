@@ -14,9 +14,11 @@ export class ProductAddComponent implements OnInit {
   protected prod_sheet_list: any;
   protected products_list: any[] = [];
   protected products_property_name: any;
-  
+  protected ogData: any;
 
-  constructor(protected scif: SCIFService) {
+  constructor(protected scif: SCIFService) {}
+
+  ngOnInit(): void {
     this.scif.getProductSheetData().subscribe({
       next: (res) => {
         this.prod_sheet_list = res;
@@ -29,15 +31,16 @@ export class ProductAddComponent implements OnInit {
     this.scif.getProductData().subscribe({
       next: (res) => {
         this.products_list = res;
-        this.products_property_name = DataTableComponent.getProperties(this.products_list[0]);
+        this.products_property_name = DataTableComponent.getProperties(
+          this.products_list[0]
+        );
+        this.ogData = this.products_list;
       },
       error: (err) => {
         throw err;
       },
     });
   }
-
-  ngOnInit(): void {}
 
   onFocus(event: Event) {
     let target = event.target as HTMLElement;
@@ -108,6 +111,27 @@ export class ProductAddComponent implements OnInit {
       this.createNew = false;
     } else {
       this.createNew = true;
+    }
+  }
+
+  searchFn(event: Event, keys = []) {
+    let target = <HTMLInputElement>event.target;
+    let newData: any = [];
+
+    if (target.value.trim() == '') {
+      this.products_list = this.ogData;
+    } else {
+      this.products_list.forEach((elem: any) => {
+        let lCaseName = elem.product_name.toLowerCase();
+        let lCaseDesc = elem.product_description.toLowerCase();
+        if (
+          lCaseName.indexOf(target.value.toLowerCase()) > -1 ||
+          lCaseDesc.indexOf(target.value.toLowerCase()) > -1
+        ) {
+          newData.push(elem);
+        }
+      });
+      this.products_list = newData;
     }
   }
 }

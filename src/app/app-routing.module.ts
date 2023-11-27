@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProductAddComponent } from './modules/product/product-add/product-add.component';
 import { NotFoundComponent } from './modules/shared/not-found/not-found.component';
+import { ProductModule } from './modules/product/product.module';
 
-// const productModule = () => import('./modules/customer/customer.module').then((module) => CustomerModule);
+const productModule = () => import('./modules/product/product.module').then((module) => ProductModule);
 
 const routes: Routes = [
   {
-    path: 'products/add',
-    component: ProductAddComponent
+    path: 'products',
+    loadChildren: productModule
   },
   {
     path: '**',
