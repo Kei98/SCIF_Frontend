@@ -1,37 +1,113 @@
 <form autocomplete="off">
-    <label for="product_name">Nombre del Producto:</label><br>
-    <input type="text" id="product_name" name="product_name"><br>
-    <label for="product_description">Descripcion del Producto:</label><br>
-    <input type="text" id="product_description" name="product_description"><br>
-    <label for="product_image">Imagen del Producto:</label><br>
-    <input type="text" id="product_image" name="product_image"><br>
-    <label for="product_spec_sheet">Hoja de Especificaciones:</label><br>
-    <div class="dropwdown">
+  <div class="row">
+    <div class="col-md-4">
+      <label for="product_id">ID:</label><br />
+      <input type="text" id="product_id" name="product_id" /><br />
+      <label for="product_name">Name:</label><br />
+      <input type="text" id="product_name" name="product_name" /><br />
+      <label for="product_description">Description:</label><br />
+      <input
+        type="text"
+        id="product_description"
+        name="product_description"
+      /><br />
+
+      <label for="product_spec_sheet">Specs Sheet:</label><br />
+      <div class="dropwdown">
         <!-- <input type="text" (click)="showDropDown()" class="dropbtn"> -->
         <div id="inputGroup" class="input-group">
-            <fa-icon [icon]="icon"></fa-icon>
-            <input (click)="showDropDown()" autocomplete="off" (blur)="onBlur($event)" (focus)="onFocus($event)" 
-            type="text" placeholder="Search.." id="myInput" (keyup)="filterFunction()" (keyup.enter)="showDropDown()" class="dropbtn">
+          <fa-icon [icon]="icon"></fa-icon>
+          <input
+            (click)="showDropDown()"
+            autocomplete="off"
+            (blur)="onBlur($event)"
+            (focus)="onFocus($event)"
+            type="text"
+            placeholder="Search.."
+            id="myInput"
+            (keyup)="filterFunction()"
+            (keyup.enter)="showDropDown()"
+            class="dropbtn"
+          />
         </div>
-        <div id="myDropdown" class="dropdown-content">
-            
-            <div id="dpList" class="dropdown-list">
-                <ul>
-                    <li *ngFor="let spec_sheet of prod_sheet_list" (click)="specSelected(spec_sheet.product_spec_sheet_name)">{{spec_sheet.product_spec_sheet_name}}</li>
-                </ul>
-                <button class="addbtn" [hidden]="createNew" type="button" (click)="createSpecSheet()">Agregar</button>
-            </div>
+        <div id="myDropdown" class="dropdown-content position-relative">
+          <div id="dpList" class="dropdown-list w-100">
+            <ul>
+              <li
+                *ngFor="let spec_sheet of prod_sheet_list"
+                (click)="specSelected(spec_sheet.product_spec_sheet_name)"
+              >
+                {{ spec_sheet.product_spec_sheet_name }}
+              </li>
+            </ul>
+            <button
+              class="addbtn"
+              [hidden]="createNew"
+              type="button"
+              (click)="createSpecSheet()"
+            >
+              Add
+            </button>
+          </div>
         </div>
-     </div>
-     <label for="product_info_quantity">Existencias:</label><br>
-    <input type="number" id="product_info_quantity" name="product_info_quantity" min="0" appearance="none"><br>
-    <label for="product_info_cost">Costo del Producto:</label><br>
-    <input type="number" id="product_info_cost" name="product_info_cost" min="0.00"><br>
-    <label for="product_info_price">Precio del Producto:</label><br>
-    <input type="number" id="product_info_price" name="product_info_price" min="0.00"><br>
-
-    <div class="data-table">
-        <input type="text" (keyup)="searchFn($event)" id="searchInput" placeholder="Search Name or Description">
-        <app-data-table [columns]="products_property_name" [data]="products_list" class="table"></app-data-table>
+      </div>
     </div>
+
+    <div class="col-md-4">
+      <label for="product_info_quantity">Quantity:</label><br />
+      <input
+        type="number"
+        id="product_info_quantity"
+        name="product_info_quantity"
+        min="0"
+        appearance="none"
+      /><br />
+
+      <label for="product_info_cost">Cost:</label><br />
+      <input
+        type="number"
+        id="product_info_cost"
+        name="product_info_cost"
+        min="0.00"
+      /><br />
+      <label for="product_info_price">Price:</label><br />
+      <input
+        type="number"
+        id="product_info_price"
+        name="product_info_price"
+        min="0.00"
+      /><br />
+
+      <label for="product_image">Image (link):</label><br />
+      <input type="text" id="product_image" name="product_image" /><br />
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          value=""
+          id="product_active"
+        />
+        <label class="form-check-label" for="product_active"> Active </label>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <button type="button" class="btn btn-success"><fa-icon [icon]="faPlus"></fa-icon>Add</button>
+      <button type="button" class="btn btn-warning"><fa-icon [icon]="faPentoSquare"></fa-icon>Edit</button>
+      <button type="button" class="btn btn-danger"><fa-icon [icon]="faTrash"></fa-icon>Delete</button>
+    </div>
+  </div>
+  <app-product-get></app-product-get>
+  <!-- <div class="data-table">
+    <input
+      type="text"
+      (keyup)="searchFn($event)"
+      id="searchInput"
+      placeholder="Search Name or Description"
+    />
+    <app-data-table
+      [columns]="products_property_name"
+      [data]="products_list"
+      class="table"
+    ></app-data-table>
+  </div> -->
 </form>

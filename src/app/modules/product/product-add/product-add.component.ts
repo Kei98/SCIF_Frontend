@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { SCIFService } from '../../shared/services/scif.service';
 import { DataTableComponent } from '../../shared/data-table/data-table.component';
+import { faPlus, faTrash, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-product-add',
@@ -11,10 +12,13 @@ import { DataTableComponent } from '../../shared/data-table/data-table.component
 export class ProductAddComponent implements OnInit {
   protected createNew = true;
   icon = faMagnifyingGlass;
+  faPlus = faPlus;
+  faTrash = faTrash;
+  faPentoSquare = faPenToSquare;
   protected prod_sheet_list: any;
-  protected products_list: any[] = [];
-  protected products_property_name: any;
-  protected ogData: any;
+  // protected products_list: any[] = [];
+  // protected products_property_name: any;
+  // protected ogData: any;
 
   constructor(protected scif: SCIFService) {}
 
@@ -28,18 +32,18 @@ export class ProductAddComponent implements OnInit {
       },
     });
 
-    this.scif.getProductData().subscribe({
-      next: (res) => {
-        this.products_list = res;
-        this.products_property_name = DataTableComponent.getProperties(
-          this.products_list[0]
-        );
-        this.ogData = this.products_list;
-      },
-      error: (err) => {
-        throw err;
-      },
-    });
+    // this.scif.getProductData().subscribe({
+    //   next: (res) => {
+    //     this.products_list = res;
+    //     this.products_property_name = DataTableComponent.getProperties(
+    //       this.products_list[0]
+    //     );
+    //     this.ogData = this.products_list;
+    //   },
+    //   error: (err) => {
+    //     throw err;
+    //   },
+    // });
   }
 
   onFocus(event: Event) {
@@ -114,24 +118,24 @@ export class ProductAddComponent implements OnInit {
     }
   }
 
-  searchFn(event: Event, keys = []) {
-    let target = <HTMLInputElement>event.target;
-    let newData: any = [];
+  // searchFn(event: Event, keys = []) {
+  //   let target = <HTMLInputElement>event.target;
+  //   let newData: any = [];
 
-    if (target.value.trim() == '') {
-      this.products_list = this.ogData;
-    } else {
-      this.products_list.forEach((elem: any) => {
-        let lCaseName = elem.product_name.toLowerCase();
-        let lCaseDesc = elem.product_description.toLowerCase();
-        if (
-          lCaseName.indexOf(target.value.toLowerCase()) > -1 ||
-          lCaseDesc.indexOf(target.value.toLowerCase()) > -1
-        ) {
-          newData.push(elem);
-        }
-      });
-      this.products_list = newData;
-    }
-  }
+  //   if (target.value.trim() == '') {
+  //     this.products_list = this.ogData;
+  //   } else {
+  //     this.products_list.forEach((elem: any) => {
+  //       let lCaseName = elem.product_name.toLowerCase();
+  //       let lCaseDesc = elem.product_description.toLowerCase();
+  //       if (
+  //         lCaseName.indexOf(target.value.toLowerCase()) > -1 ||
+  //         lCaseDesc.indexOf(target.value.toLowerCase()) > -1
+  //       ) {
+  //         newData.push(elem);
+  //       }
+  //     });
+  //     this.products_list = newData;
+  //   }
+  // }
 }

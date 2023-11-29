@@ -1,1 +1,14 @@
-<p>product-get works!</p>
+<div class="data-table">
+    <input
+      type="text"
+      (keyup)="searchFn($event)"
+      id="searchInput"
+      placeholder="Search Name or Description"
+    />
+    <app-data-table
+      [columns]="products_headers"
+      [data]="products_list"
+      [columnstoOmit]="columnsToOmit"
+      class="table"
+    ></app-data-table>
+  </div>
