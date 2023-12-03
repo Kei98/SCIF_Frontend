@@ -9,6 +9,6 @@
       [columns]="products_headers"
       [data]="products_list"
       [columnstoOmit]="columnsToOmit"
-      class="table"
+      class="table" (rowSelected)="handleData($event)"
     ></app-data-table>
   </div>

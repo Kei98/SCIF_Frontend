@@ -14,17 +14,17 @@ export class SCIFService extends ManagerService{
     super(http)
   }
 
-  searchProduct():Observable<any> {
-    let url = environment.URL + 'products.json';
+  // searchProduct():Observable<any> {
+  //   let url = environment.URL + 'products.json';
 
-    return this.executeGet(url);
-  }
+  //   return this.executeGet(url);
+  // }
 
-  getProductSheetData(): Observable<any> {
-    return this.http.get(environment.URL + 'productsheets.json');
-  }
+  // getProductSheetData(): Observable<any> {
+  //   return this.http.get(environment.URL + 'productsheets.json');
+  // }
 
-  getProductData(): Observable<any> {
-    return this.http.get(environment.URL + 'products.json');
-  }
+  // getProductData(): Observable<any> {
+  //   return this.http.get(environment.URL + 'products.json');
+  // }
 }

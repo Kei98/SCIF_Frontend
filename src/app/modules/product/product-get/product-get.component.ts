@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { SCIFService } from '../../shared/services/scif.service';
 import { DataTableComponent } from '../../shared/data-table/data-table.component';
 import {flattenJson} from '../../shared/data-table/data-table.component';
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-product-get',
@@ -14,10 +15,12 @@ export class ProductGetComponent implements OnInit{
   protected products_headers: any;
   protected ogData: any;
   protected columnsToOmit = ['product_info'];
+  protected rowSelected = new EventEmitter<any>();
 
-  constructor(protected scif: SCIFService) {}
+
+  constructor(private productService: ProductService) {}
   ngOnInit(): void {
-    this.scif.getProductData().subscribe({
+    this.productService.getProductData().subscribe({
       next: (res) => {
         this.products_list = flattenJson(res);
         this.products_property_name = DataTableComponent.getProperties(
@@ -52,6 +55,11 @@ export class ProductGetComponent implements OnInit{
       });
       this.products_list = newData;
     }
+  }
+
+  handleData(data: any) {
+    this.productService.setSharedData(data);
+    // this.rowSelected.emit(data);
   }
 
 }

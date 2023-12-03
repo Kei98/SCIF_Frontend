@@ -31,7 +31,6 @@ export class DataTableComponent implements OnInit, OnDestroy {
   // @ViewChild('dataTable', { static: false }) table!: ElementRef;
 
   dtTrigger: Subject<any> = new Subject<any>();
-  dtOptions: any = {};
   reverse: boolean = false;
   p: number = 1;
 
@@ -48,9 +47,9 @@ export class DataTableComponent implements OnInit, OnDestroy {
 
   ngAfterViewInit() {}
 
-  onPageChange(page: number): void {
-    console.log('llego');
-  }
+  // onPageChange(page: number): void {
+  //   console.log('llego');
+  // }
 
   ngOnDestroy() {
     this.dtTrigger.unsubscribe();
@@ -100,7 +99,7 @@ export class DataTableComponent implements OnInit, OnDestroy {
 
   rowSelection(target: any) {
     // let target = <HTMLElement>event.target;
-    console.log(target);
+    // console.log(target);
     this.rowSelected.emit(target);
   }
   
