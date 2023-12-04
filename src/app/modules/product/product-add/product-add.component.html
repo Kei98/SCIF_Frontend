@@ -1,22 +1,19 @@
 <form autocomplete="off">
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-lg-6 col-md-6 col-12">
       <label for="ID">ID:</label><br />
-      <label id="ID">{{id}}</label><br />
+      <!-- <label id="ID">{{id}}</label><br /> -->
+      <input id="ID" [value]="id" disabled />
       <label for="Name">Name:</label><br />
-      <input type="text" id="Name" name="Name" /><br />
+      <input type="text" id="Name" name="Name" required/><br />
       <label for="Description">Description:</label><br />
-      <input
-        type="text"
-        id="Description"
-        name="Description"
-      /><br />
+      <input type="text" id="Description" name="Description" /><br />
 
       <label for="Spec">Specs Sheet:</label><br />
       <div class="dropwdown">
         <!-- <input type="text" (click)="showDropDown()" class="dropbtn"> -->
         <div id="inputGroup" class="input-group">
-          <fa-icon [icon]="icon"></fa-icon>
+          <fa-icon class="icon" [icon]="icon"></fa-icon>
           <input
             (click)="showDropDown()"
             autocomplete="off"
@@ -29,6 +26,7 @@
             (keyup.enter)="showDropDown()"
             class="dropbtn"
             data-key=""
+            required
           />
         </div>
         <div id="myDropdown" class="dropdown-content position-relative">
@@ -54,7 +52,7 @@
       </div>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-lg-6 col-md-6 col-12">
       <label for="Quantity">Quantity:</label><br />
       <input
         type="number"
@@ -65,40 +63,43 @@
       /><br />
 
       <label for="Cost">Cost:</label><br />
-      <input
-        type="number"
-        id="Cost"
-        name="Cost"
-        min="0.00"
-      /><br />
+      <input type="number" id="Cost" name="Cost" min="0.00" /><br />
       <label for="Price">Price:</label><br />
-      <input
-        type="number"
-        id="Price"
-        name="Price"
-        min="0.00"
-      /><br />
+      <input type="number" id="Price" name="Price" min="0.00" /><br />
 
       <label for="Image">Image (link):</label><br />
       <input type="text" id="Image" name="Image" /><br />
-      <div class="form-check">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          value=""
-          id="Active"
-        />
-        <label class="form-check-label" for="Active"> Active </label>
-      </div>
+      <label class="switch">
+        <input type="checkbox" checked id="Active" />
+        <span class="slider round"></span>
+      </label>
+      <label for="Active">Active</label>
     </div>
-    <div class="col-md-4">
+    <div class="col-12">
       <div class="specs_sheet" [hidden]="formSpecSheet">
         <app-spec-sheet-add></app-spec-sheet-add>
-      </div>      
-      <button type="button" class="btn btn-success" id="addButton" (click)="addProduct()"><fa-icon [icon]="faPlus"></fa-icon>Add</button>
-      <button type="button" class="btn btn-warning" id="editButton"><fa-icon [icon]="faPentoSquare"></fa-icon>Edit</button>
-      <button type="button" class="btn btn-danger" id="deleteButton"><fa-icon [icon]="faTrash"></fa-icon>Delete</button>
-      <button type="button" class="btn btn-secondary" (click)="clearInputsData()"><fa-icon [icon]="faEraser"></fa-icon>Clear</button>
+      </div>
+      <button
+        type="button"
+        class="btn btn-success ml-0"
+        id="addButton"
+        (click)="addProduct()"
+      >
+        <fa-icon [icon]="faPlus"></fa-icon>Add
+      </button>
+      <button type="button" class="btn btn-warning" id="editButton">
+        <fa-icon [icon]="faPentoSquare"></fa-icon>Edit
+      </button>
+      <button type="button" class="btn btn-danger" id="deleteButton">
+        <fa-icon [icon]="faTrash"></fa-icon>Delete
+      </button>
+      <button
+        type="button"
+        class="btn btn-secondary"
+        (click)="clearInputsData()"
+      >
+        <fa-icon [icon]="faEraser"></fa-icon>Clear
+      </button>
     </div>
   </div>
   <!-- <app-product-get></app-product-get> -->

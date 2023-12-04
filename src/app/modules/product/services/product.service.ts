@@ -30,7 +30,7 @@ export class ProductService extends SCIFService{
   }
 
   addProduct(body:any): Observable<any> {
-    return this.http.post(environment.URL + 'products/', body);
+    return this.http.post(environment.URL + 'products/', body, {observe: 'response'});
   }
 
   editProduct(body:any, id:any): Observable<any> {

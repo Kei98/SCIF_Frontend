@@ -16,6 +16,7 @@ import {
   faEraser
 } from '@fortawesome/free-solid-svg-icons';
 import { ProductService } from '../services/product.service';
+import { ProductNotificationService } from '../services/product-notification-service.service';
 
 @Component({
   selector: 'app-product-add',
@@ -32,13 +33,14 @@ export class ProductAddComponent implements OnInit {
   faPentoSquare = faPenToSquare;
   faEraser = faEraser;
   protected prod_sheet_list: any;
-  protected id = 0;
+  protected id = 2;
   // protected isActive: boolean = true;
   // @Input() selectedRow = [];
   receivedData: any = null;
+  protected selectedSepec:any = null;
   
   protected inputsDataNull:any = {
-    Active: null,
+    Active: 'true',
     Cost: null,
     Description: null,
     ID: null,
@@ -56,7 +58,8 @@ export class ProductAddComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private productNotification: ProductNotificationService
   ) {}
 
   ngOnInit(): void {
@@ -96,6 +99,9 @@ export class ProductAddComponent implements OnInit {
     let target = event.target as HTMLElement;
     let parent = target.parentElement;
     parent?.classList.add('pretty-border');
+    // let dropdown = document.getElementById('myDropdown');
+    // dropdown?.classList.add('show');
+    // dropdown?.classList.remove('dropdown-content');
   }
 
   onBlur(event: Event) {
@@ -140,6 +146,7 @@ export class ProductAddComponent implements OnInit {
   }
 
   specSelected(spec_selected: any) {
+    // this.selectedSepec = spec_selected.product_spec_sheet_id;
     this.setSpecSheetVal(spec_selected);
     this.showDropDown();
   }
@@ -182,6 +189,10 @@ export class ProductAddComponent implements OnInit {
       }
     }
     this.checkInputsData(data);    
+    // console.log('this.inputsDataNull 2');
+    // console.log(this.inputsDataNull);
+    // console.log('llega al add 2');
+    // console.log(data);
     // console.log('inputsData');
     // console.log(this.inputsData);
     this.fillInputs();
@@ -206,6 +217,9 @@ export class ProductAddComponent implements OnInit {
     }
     
     this.id = this.inputsData['ID'];
+    if (this.selectedSepec == 0) {
+      document.getElementById('Spec')?.setAttribute('data-key', '0');
+    }
     // console.log(this.id);
     this.cdr.detectChanges();
   }
@@ -243,6 +257,7 @@ export class ProductAddComponent implements OnInit {
   }
 
   clearInputsData() {
+    this.selectedSepec = 0;
     this.fillInputsData(this.inputsDataNull);
   }
 
@@ -264,31 +279,42 @@ export class ProductAddComponent implements OnInit {
 
   addProduct() {
     let HTMLElemets = this.getInputs();
+    // Object.assign({}, this.getInputs());
     // if ((HTMLElemets['Name'] as HTMLInputElement).value == null) {
     //   console.log('es null');
     // } else if((HTMLElemets['Name'] as HTMLInputElement).value == ''){
     //   console.log('es comillas');
     // }
-    if((HTMLElemets['Name'] as HTMLInputElement).value != ''){
+    if((HTMLElemets['Name'] as HTMLInputElement).value.trim() != ''){
       // console.log((HTMLElemets['Name'] as HTMLInputElement).value);
       if(HTMLElemets['Quantity'] != null && HTMLElemets['Cost'] != null && HTMLElemets['Price'] != null) {
         // Call product_info add
       }
-      let spec = HTMLElemets['Spec'];
-      (spec as HTMLInputElement).value = spec.getAttribute('data-key');
+      // console.log('HTMLElemets[Spec] BEFORE VALUE');
+      // console.log(HTMLElemets['Spec'].value);
+      let spec = HTMLElemets['Spec'].getAttribute('data-key');
+      // console.log(spec.value);
+      // console.log('type of');
+      // console.log(typeof spec);
+      // console.log(spec);
+      // spec.value = spec.getAttribute('data-key');
+      // console.log('after');
+      // console.log(spec.value);
       let active = HTMLElemets['Active'];
       (active as HTMLInputElement).value = active.checked;
+      console.log('HTMLElemets');
+      console.log(HTMLElemets);
       for (const key in HTMLElemets) {
         if (HTMLElemets.hasOwnProperty(key)) {
           if (key == 'Spec') {
-            HTMLElemets[key] = Number(HTMLElemets[key].value);
-            console.log('HTMLElemets[Spec]');
-            console.log(HTMLElemets[key]);
-            if (typeof HTMLElemets[key] === 'number') {
-              console.log('number');
-            } else {
-              console.log(typeof HTMLElemets[key]);
-            }
+            HTMLElemets[key] = Number(spec);
+            // console.log('HTMLElemets[Spec]');
+            // console.log(HTMLElemets[key]);
+            // if (typeof HTMLElemets[key] === 'number') {
+            //   console.log('number');
+            // } else {
+            //   console.log(typeof HTMLElemets[key]);
+            // }
           } else {
             HTMLElemets[key] = HTMLElemets[key].value;  
           }
@@ -307,12 +333,22 @@ export class ProductAddComponent implements OnInit {
       }
       // HTMLElemets['Spec'] = HTMLElemets['spec'].value as number;
       // console.log('HTMLElemets[Spec]');
-      // console.log(HTMLElemets['Spec']);
-      this.productService.addProduct(HTMLElemets).subscribe({
+      console.log(HTMLElemets);
+      let preparedObj = this.toActualNames(HTMLElemets);
+      // console.log(preparedObj);
+      this.productService.addProduct(preparedObj).subscribe({
         next: (res) => {
           console.log(res);
+          console.log("res.status");
+          console.log(res.status);
+          if(res.status === 201) {
+            console.log('EQUALS 201');
+            this.productNotification.notifySuccess();
+          }
+          
         },
         error: (err) => {
+          console.log(err.error);
           throw err;
         },
       });
@@ -320,6 +356,21 @@ export class ProductAddComponent implements OnInit {
       console.log('alert');
       alert('Name is required');
     }
+  }
+
+  toActualNames(object:any) {
+    const {
+      Active: product_active,
+      Description:product_description,
+      ID:product_id,
+      Image:product_image,
+      Name:product_name,
+      Spec: product_spec_sheet} = object;
+    
+    const actualObject = {product_id, product_name, product_description, 
+      product_image, product_active, product_spec_sheet};
+    
+    return actualObject;
   }
 
   // searchFn(event: Event, keys = []) {

@@ -1,1 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'variables.scss';
+
+.row {
+    margin: 10px;
+  }
+
+  input {
+    width: 100%;
+    font-size: 18px;
+    height: 45px;
+    padding: 0px 8px 0px 8px;
+    border: 1px solid black;
+    outline: none;
+    border-radius: 3px;
+  }
+
+  input:hover{
+    border: 1px solid $primary-color;
+  }
+
+  input:focus{
+    border: 1px solid $primary-color;
+  }
+
+  label{
+    color: black;
+    font-weight: 500;
+  }

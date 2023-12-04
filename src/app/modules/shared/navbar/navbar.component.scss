@@ -1,3 +1,4 @@
+@import '../../../../variables.scss';
 // nav {
 //     background-color: #333;
 //     padding: 10px;
@@ -45,7 +46,7 @@
 }
 
 .navbar {
-  background-color: rgb(153, 193, 229);
+  background-color: $primary-color;
 }
 
 

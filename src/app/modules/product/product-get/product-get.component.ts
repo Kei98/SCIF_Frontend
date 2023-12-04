@@ -3,6 +3,7 @@ import { SCIFService } from '../../shared/services/scif.service';
 import { DataTableComponent } from '../../shared/data-table/data-table.component';
 import {flattenJson} from '../../shared/data-table/data-table.component';
 import { ProductService } from '../services/product.service';
+import { ProductNotificationService } from '../services/product-notification-service.service';
 
 @Component({
   selector: 'app-product-get',
@@ -18,8 +19,22 @@ export class ProductGetComponent implements OnInit{
   protected rowSelected = new EventEmitter<any>();
 
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private productNotification: ProductNotificationService
+    ) {
+      this.productNotification.onSuccess().subscribe(() => {
+        this.loadData();
+        console.log('Task completed successfully.');
+      });
+    }
   ngOnInit(): void {
+    // productNotification
+    this.loadData();
+    
+  }
+
+  private loadData() {
     this.productService.getProductData().subscribe({
       next: (res) => {
         this.products_list = flattenJson(res);
@@ -33,9 +48,7 @@ export class ProductGetComponent implements OnInit{
         throw err;
       },
     });
-    
   }
-
   searchFn(event: Event, keys = []) {
     let target = <HTMLInputElement>event.target;
     let newData: any = [];
