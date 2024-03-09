@@ -1,0 +1,88 @@
+<form autocomplete="off">
+  <div class="row">
+    <div class="col-lg-4 col-md-4 col-12">
+      <h2>Personal Information</h2>
+      <div id="personalInfo" [hidden]="existingUser">
+        <label for="Name">Name:</label><br />
+        <input type="text" id="Name" name="Name" required /><br />
+        <label for="ID-Card">ID Card:</label><br />
+        <input type="text" id="ID-Card" name="ID-Card" required /><br />
+        <label for="Telephone">Telephone Number:</label><br />
+        <input type="text" id="Telephone" name="Telephone" /><br />
+        <label for="Email">Email:</label><br />
+        <input type="text" id="Email" name="Email" /><br />
+        <label class="switch">
+          <input type="checkbox" checked id="SameEmail" />
+          <span class="slider round"></span>
+        </label>
+        <label for="SameEmail">Use this email for logging in</label><br />
+        <label for="Address">Address:</label><br />
+        <input type="text" id="Address" name="Address" /><br />
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="existingUser" (click)="denyExistingUser()" />
+        <span class="slider round"></span>
+      </label>
+      <label for="existingUser">Already have a user</label><br />
+      <div [hidden]="!existingUser">
+        <label for="InfoID">User ID:</label><br />
+        <input type="text" id="InfoID" name="InfoID" required /><br />
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-4 col-12">
+      <h2>Contact Information</h2>
+      <label for="ContactTelephone">Telephone:</label><br />
+      <input type="text" id="ContactTelephone" name="ContactTelephone" /><br />
+
+      <label for="ContactName">Contact's Name:</label><br />
+      <input type="text" id="ContactName" name="ContactName" /><br />
+    </div>
+    <div class="col-lg-4 col-md-4 col-12">
+      <h2>User/Log In Information</h2>
+      <label for="Username">Username:</label><br />
+      <input type="text" id="Username" name="Username" /><br />
+
+      <label for="UserEmail">Email:</label><br />
+      <input type="text" id="UserEmail" name="UserEmail" /><br />
+      <label for="Password">Password:</label><br />
+      <input type="password" id="Password" name="Password" /><br />
+      
+      <label for="PasswordC">Confirm Password:</label><br />
+      <input type="password" id="PasswordC" name="PasswordC" /><br />
+      <!-- </div>
+    <label for="UserRole">User Role:</label><br />
+    <div class="dropwdown">
+      <div id="inputGroup" class="input-group">
+        <fa-icon class="icon" [icon]="icon"></fa-icon>
+        <input
+          (click)="showDropDown()"
+          autocomplete="off"
+          (blur)="onBlur($event)"
+          (focus)="onFocus($event)"
+          type="text"
+          placeholder="Search.."
+          id="UserRole"
+          (keyup)="filterFunction()"
+          (keyup.enter)="showDropDown()"
+          class="dropbtn"
+          data-key=""
+          required
+        />
+      </div>
+      <div id="myDropdown" class="dropdown-content position-relative">
+        <div id="dpList" class="dropdown-list w-100">
+          <ul>
+            <li
+              *ngFor="let spec_sheet of prod_sheet_list"
+              (click)="specSelected(spec_sheet)"
+            >
+              {{ spec_sheet.product_spec_sheet_name }}
+            </li>
+          </ul>
+        </div>
+      </div> -->
+    </div>
+  </div>
+  <button id="createUser">Create User</button>
+</form>

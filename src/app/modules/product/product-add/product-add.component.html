@@ -87,10 +87,10 @@
       >
         <fa-icon [icon]="faPlus"></fa-icon>Add
       </button>
-      <button type="button" class="btn btn-warning" id="editButton">
+      <button type="button" class="btn btn-warning" id="editButton" (click)="editProduct()">
         <fa-icon [icon]="faPentoSquare"></fa-icon>Edit
       </button>
-      <button type="button" class="btn btn-danger" id="deleteButton">
+      <button type="button" class="btn btn-danger" id="deleteButton" (click)="deleteProduct()">
         <fa-icon [icon]="faTrash"></fa-icon>Delete
       </button>
       <button
