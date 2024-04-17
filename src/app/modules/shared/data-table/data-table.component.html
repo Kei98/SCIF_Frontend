@@ -9,11 +9,14 @@
       <tr>
         <ng-container *ngFor="let column of columns">
           <!-- Check if the column should be omitted -->
-          <ng-container *ngFor="let columnToOmit of columnstoOmit">
+          <!-- <ng-container *ngFor="let columnToOmit of columnstoOmit">
             <th *ngIf="column !== columnToOmit" (click)="sort(column)">
               {{ column }}&nbsp;<i class="fa fa-sort"></i>
             </th>
-          </ng-container>
+          </ng-container> -->
+          <th *ngIf="!columnstoOmit.includes(column)" (click)="sort(column)">
+            {{ column }}&nbsp;<i class="fa fa-sort"></i>
+          </th>
         </ng-container>
       </tr>
     </thead>
@@ -26,11 +29,19 @@
         <!-- <td *ngFor="let column of columns">{{ row[column] }}</td> -->
         <ng-container *ngFor="let column of columns">
           <!-- Check if the column should be omitted -->
-          <ng-container *ngFor="let columnToOmit of columnstoOmit">
+          <!-- <ng-container *ngFor="let columnToOmit of columnstoOmit">
             <td *ngIf="column !== columnToOmit" (click)="rowSelection(row)">
               {{ row[column] }}
             </td>
-          </ng-container>
+          </ng-container> -->
+          <td *ngIf="!columnstoOmit.includes(column)" (click)="rowSelection(row)">
+            <div *ngIf="column !== 'Image'">
+              {{ row[column] }}
+            </div>
+            <div *ngIf="column == 'Image'">
+              <img src="{{ row[column] }}" alt="">
+            </div>
+          </td>
         </ng-container>
       </tr>
     </tbody>

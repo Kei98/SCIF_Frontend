@@ -1,0 +1,76 @@
+<section id="product">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="productHeading text-center">
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="row mt-3">
+                    <div class="col-lg-3 col-md-6 " *ngFor="let product of productsArray">
+                        <div class="box-shadow">
+                            <div class="card mt-2" (click)="showdetails(product)">
+                                <img   [src]="product.Image"
+                                    class="card-img-top img-fluid" [alt]="product.Image.alt">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{product.Name}}</h5>
+                                    <p class="card-text"><span
+                                            class="text-danger fw-semibold me-2">₡{{product.Price}}</span>
+
+                                    </p>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <span><i class="fa-solid fa-star  m-0" style="color: #f1f50f;"></i></span>
+                                            <span><i class="fa-solid fa-star  m-0" style="color: #f1f50f;"></i></span>
+                                            <span><i class="fa-solid fa-star-half-stroke  m-0"
+                                                    style="color: #f1f50f;"></i></span>
+                                            <span class="text-muted">
+                                                <div *ngIf="product.Quantity <= 3">
+                                                    Solo
+                                                </div>
+                                                quedan {{ product.Quantity }}!
+                                            </span>
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="text-end pb-0 mb-0"><button (click)="addtocart(product.ID)"
+                                                class="btn  text-end btn-sm btn-success p-2">
+                                                <fa-icon [icon]="cart_icon"></fa-icon>
+                                                    <i class="fa-solid fa-cart-plus"></i>
+                                                </button></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<div class="popup" id="popup" [hidden]="popupHidden">
+    <div class="popup-header">
+        <div class="title">{{ name }}</div>
+        <button data-close-button class="close-button" (click)="closePopup()">&times;</button>
+    </div>
+    <div class="popup-body">
+        <img [src]="image">
+        <br>
+        <span class="input-group">
+            <input type="number" class="form-control" id="qty-input" min="1" value="{{ purchasedQty }}">
+            <button class="input-group-addon btn btn-success"><fa-icon [icon]="cart_icon"></fa-icon> Añadir al carrito</button>
+        </span>
+        <br>
+        Existencias: {{ qty }}
+        <br> Precio por unidad: ₡{{ price }}
+        <h3>Descripción</h3>
+        {{ description }}
+        <br>
+        <h3>Hoja especificaciones</h3>
+        {{ spec }}
+    </div>
+</div>
+<div id="overlay"></div>

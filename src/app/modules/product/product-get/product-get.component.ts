@@ -31,7 +31,7 @@ export class ProductGetComponent implements OnInit{
   ngOnInit(): void {
     // productNotification
     this.loadData();
-    
+
   }
 
   private loadData() {
