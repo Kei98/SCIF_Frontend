@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './modules/shared/not-found/not-found.component';
 import { ProductModule } from './modules/product/product.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { authGuard } from './modules/auth/auth.guard';
 
 const productModule = () => import('./modules/product/product.module').then((module) => ProductModule);
 const authModule = () => import('./modules/auth/auth.module').then((module) => AuthModule);
@@ -10,7 +11,8 @@ const authModule = () => import('./modules/auth/auth.module').then((module) => A
 const routes: Routes = [
   {
     path: 'products',
-    loadChildren: productModule
+    loadChildren: productModule,
+    canActivate: [authGuard]
   },
   {
     path: '',
@@ -20,7 +22,7 @@ const routes: Routes = [
     path: '**',
     component: NotFoundComponent
   },
-  
+
   // {
   //   path: '**',
   //   redirectTo: '**'

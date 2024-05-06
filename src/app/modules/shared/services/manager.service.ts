@@ -134,7 +134,7 @@ export class ManagerService {
     }
 
     /**
-     * Add headers tu array
+     * Add headers to array
      */
     protected addHeader(key: string, value: string): any {
         this.headers[key] = value;
