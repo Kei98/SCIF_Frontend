@@ -9,9 +9,9 @@
                 <div class="row mt-3">
                     <div class="col-lg-3 col-md-6 " *ngFor="let product of productsArray">
                         <div class="box-shadow">
-                            <div class="card mt-2" (click)="showdetails(product)">
-                                <img   [src]="product.Image"
-                                    class="card-img-top img-fluid" [alt]="product.Image.alt">
+                            <div class="card mt-2">
+                                <img   [src]="product.Image "
+                                    class="card-img-top img-fluid" [alt]="product.Image.alt" (click)="showdetails(product)">
                                 <div class="card-body">
                                     <h5 class="card-title">{{product.Name}}</h5>
                                     <p class="card-text"><span
@@ -64,12 +64,12 @@
             <button class="input-group-addon btn btn-success"><fa-icon [icon]="cart_icon"></fa-icon> Añadir al carrito</button>
         </span>
         <br>
-        Existencias: {{ qty }}
-        <br> Precio por unidad: ₡{{ price }}
-        <h3>Descripción</h3>
+        <b>Existencias:</b> {{ qty }}
+        <br> <b>Precio por unidad:</b> ₡{{ price }}
+        <h5>Descripción</h5>
         {{ description }}
         <br>
-        <h3>Hoja especificaciones</h3>
+        <h5>Hoja especificaciones</h5>
         {{ spec }}
     </div>
 </div>

@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService extends SCIFService{
+export class UserService extends SCIFService{
 
   constructor(http:HttpClient) {
     super(http);
@@ -21,13 +21,8 @@ export class ProductService extends SCIFService{
     this.sharedDataSubject.next(data);
   }
 
-  setHeader(){
-    let token = JSON.parse(localStorage.getItem('JWT_Token') || '{}');
-    this.addHeader("Authorization", token);
-  }
-
-  getProductSheetData(): Observable<any> {
-    return this.http.get(environment.URL + 'productsheets.json');
+  getAllUserData(): Observable<any> {
+    return this.http.get(environment.URL + 'usersinfo.json');
   }
 
   addProductSheetData(body:any): Observable<any> {
@@ -39,7 +34,6 @@ export class ProductService extends SCIFService{
   }
 
   getProductData(): Observable<any> {
-    console.log(super.getHeaders);
     return this.http.get(environment.URL + 'products.json');
   }
 

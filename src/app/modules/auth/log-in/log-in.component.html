@@ -5,24 +5,24 @@
       <!-- <label for="UsernameOrEmail">:</label><br /> -->
       <input
         type="text"
-        id="UsernameOrEmail"
-        name="UsernameOrEmail"
-        placeholder="Username or Email"
+        id="email"
+        name="email"
+        placeholder="Email"
       /><br />
 
       <!-- <label for="Password">Password:</label><br /> -->
       <input
         type="password"
-        id="Password"
-        name="Password"
-        placeholder="Password"
-      /><br />
-      <img src="https://lacasadeltanque.com/costa-rica/wp-content/uploads/sites/5/2020/03/sss-587x440.jpg" alt="Bomba de agua">
+        id="password"
+        name="password"
+        placeholder="Contraseña"
+      />
     </div>
+    <input type="button" (click)="login()" value="Iniciar Sesión">
   </form>
 
   <div>
-    <a href="">Forgot your password?</a><br />
-    Don't have a user yet? Sign in <a href="/register">here</a>
+    <a href="">Olvidó su contraseña?</a><br />
+    No tiene un usuario? Regístrese <a href="/register">aquí</a>
   </div>
 </div>
