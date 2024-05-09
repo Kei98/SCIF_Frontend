@@ -1,0 +1,18 @@
+.fm-custom-cell {
+    display: flex !important;
+    align-items: center !important;
+    font-size: 12px !important;
+  }
+
+  .fm-custom-cell .flag-icon {
+    width: 21px !important;
+    height: 16px !important;
+    margin-left: 0 !important;
+    margin-right: 2px !important;
+  }
+
+  #fm-pivot-view .fm-grid-layout .fm-custom-cell.fm-expanded .fm-expanded-icon::before,
+  #fm-pivot-view .fm-grid-layout .fm-custom-cell.fm-collapsed .fm-collapsed-icon::before {
+    top: -2px;
+    height: 16px;
+  }

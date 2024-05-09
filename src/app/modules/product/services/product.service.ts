@@ -39,6 +39,7 @@ export class ProductService extends SCIFService{
   }
 
   getProductData(): Observable<any> {
+    debugger;
     console.log(super.getHeaders);
     return this.http.get(environment.URL + 'products.json');
   }

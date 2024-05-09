@@ -25,39 +25,39 @@ export class UserService extends SCIFService{
     return this.http.get(environment.URL + 'usersinfo.json');
   }
 
-  addProductSheetData(body:any): Observable<any> {
-    return this.http.post(environment.URL + 'productsheets.json', body);
-  }
+//   addProductSheetData(body:any): Observable<any> {
+//     return this.http.post(environment.URL + 'productsheets.json', body);
+//   }
 
-  editProductSheetData(id:any, body:any): Observable<any> {
-    return this.http.put(environment.URL + 'productsheets.json'+ id.toString(), body, {observe: 'response'});
-  }
+//   editProductSheetData(id:any, body:any): Observable<any> {
+//     return this.http.put(environment.URL + 'productsheets.json'+ id.toString(), body, {observe: 'response'});
+//   }
 
-  getProductData(): Observable<any> {
-    return this.http.get(environment.URL + 'products.json');
-  }
+//   getProductData(): Observable<any> {
+//     return this.http.get(environment.URL + 'products.json');
+//   }
 
-  addProduct(body:any): Observable<any> {
-    return this.http.post(environment.URL + 'products/', body, {observe: 'response'});
-  }
+//   addProduct(body:any): Observable<any> {
+//     return this.http.post(environment.URL + 'products/', body, {observe: 'response'});
+//   }
 
-  editProduct(id:any, body:any): Observable<any> {
-    return this.http.put(environment.URL + 'products/' + id.toString(), body, {observe: 'response'});
-  }
+//   editProduct(id:any, body:any): Observable<any> {
+//     return this.http.put(environment.URL + 'products/' + id.toString(), body, {observe: 'response'});
+//   }
 
-  deleteProduct(id:any): Observable<any> {
-    return this.http.delete(environment.URL + 'products/' + id.toString(), {observe: 'response'});
-  }
+//   deleteProduct(id:any): Observable<any> {
+//     return this.http.delete(environment.URL + 'products/' + id.toString(), {observe: 'response'});
+//   }
 
-  getProductInfo(): Observable<any> {
-    return this.http.get(environment.URL + 'productsinfo.json');
-  }
+//   getProductInfo(): Observable<any> {
+//     return this.http.get(environment.URL + 'productsinfo.json');
+//   }
 
-  addProductInfo(body:any): Observable<any> {
-    return this.http.post(environment.URL + 'productsinfo', body, {observe: 'response'});
-  }
+//   addProductInfo(body:any): Observable<any> {
+//     return this.http.post(environment.URL + 'productsinfo', body, {observe: 'response'});
+//   }
 
-  editProductInfo(id:any, body:any): Observable<any> {
-    return this.http.put(environment.URL + 'productsinfo/'+ id.toString(), body, {observe: 'response'});
-  }
+//   editProductInfo(id:any, body:any): Observable<any> {
+//     return this.http.put(environment.URL + 'productsinfo/'+ id.toString(), body, {observe: 'response'});
+//   }
 }

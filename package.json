@@ -28,6 +28,7 @@
     "datatables.net": "^1.13.8",
     "datatables.net-bs5": "^1.11.3",
     "jquery": "^3.7.1",
+    "ngx-flexmonster": "2.9.76-1",
     "ngx-pagination": "^6.0.3",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

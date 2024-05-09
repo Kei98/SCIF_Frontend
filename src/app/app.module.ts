@@ -7,6 +7,7 @@ import { SharedModule } from './modules/shared/shared.module';
 import { JWTInterceptor, jWTInterceptorProviders } from './modules/auth/jwt.interceptor';
 // import { authGuard } from './modules/auth/auth.guard';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+// import { FlexmonsterPivotModule } from 'ngx-flexmonster';
 
 @NgModule({
   declarations: [
@@ -15,11 +16,16 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    // FlexmonsterPivotModule
   ],
   providers: [
     // authGuard,
-    jWTInterceptorProviders
+    { provide: HTTP_INTERCEPTORS,
+      useClass: JWTInterceptor,
+      multi: true
+    },
+    // jWTInterceptorProviders
   ],
   bootstrap: [AppComponent]
 })

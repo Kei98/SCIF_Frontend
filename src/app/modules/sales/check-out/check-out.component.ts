@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-check-out',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class CheckOutComponent {
 
+  constructor(private cartService:CartService) {
+
+  }
+
+  getTotalPrice() {
+    return this.cartService.getTotalPrice();
+  }
 }

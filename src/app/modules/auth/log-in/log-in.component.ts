@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,11 +11,12 @@ import { AuthService } from '../services/auth.service';
 export class LogInComponent {
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private router:Router
   ) {}
 
   login() {
-    console.log(this.getInputs());
+    // debugger;
     this.authService.login(this.getInputs()).subscribe({
       next: (res) => {
         this.authService.logout();
@@ -23,10 +25,12 @@ export class LogInComponent {
           this.authService.setToken(token);
           console.log(token);
           this.authService.isLoggedIn = true;
+          this.router.navigateByUrl('/products/admin');
         }
       },
       error: (err) => {
         console.log(err.error);
+        alert(err.error.detail);
         this.authService.isLoggedIn = false;
         throw err;
       },

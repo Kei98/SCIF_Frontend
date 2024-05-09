@@ -75,4 +75,8 @@ export class ProductGetComponent implements OnInit{
     // this.rowSelected.emit(data);
   }
 
+  getProductsList() {
+    return this.products_list;
+  }
+
 }

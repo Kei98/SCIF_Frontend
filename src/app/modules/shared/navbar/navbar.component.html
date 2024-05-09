@@ -21,10 +21,41 @@
     </button>
     <div class="collapse navbar-collapse" id="navbar1">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Link1</a>
-        </li>
+
+        <!-- <li class="nav-item">
+          <a href="products/add" class="nav-link">Products</a>
+        </li> -->
+
         <li class="nav-item dropdown">
+          <a
+            href="#"
+            id="menu"
+            data-bs-toggle="dropdown"
+            class="nav-link dropdown-toggle"
+            data-bs-display="static"
+            >Reportes</a
+          >
+          <ul class="dropdown-menu">
+            <li class="dropdown-submenu">
+              <a
+                href="products/products"
+                data-bs-toggle="dropdown"
+                class="dropdown-item"
+                >Inventario por Fecha</a
+              >
+            </li>
+            <li class="dropdown-submenu">
+              <a
+                href="products/admin"
+                data-bs-toggle="dropdown"
+                class="dropdown-item"
+                >Compras vs. Ventas</a
+              >
+            </li>
+          </ul>
+        </li>
+
+        <!-- <li class="nav-item dropdown">
           <a
             href="#"
             id="menu"
@@ -73,10 +104,174 @@
               </ul>
             </li>
           </ul>
+        </li> -->
+
+        <li class="nav-item dropdown">
+          <a
+            href="#"
+            id="menu"
+            data-bs-toggle="dropdown"
+            class="nav-link dropdown-toggle"
+            data-bs-display="static"
+            >Compras</a
+          >
+          <ul class="dropdown-menu">
+            <li class="dropdown-submenu">
+              <a
+                href="products/products"
+                data-bs-toggle="dropdown"
+                class="dropdown-item"
+                >Historial</a
+              >
+            </li>
+            <li class="dropdown-submenu">
+              <a
+                href="products/admin"
+                data-bs-toggle="dropdown"
+                class="dropdown-item"
+                >Administrar Ventas</a
+              >
+            </li>
+
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a
+            href="#"
+            id="menu"
+            data-bs-toggle="dropdown"
+            class="nav-link dropdown-toggle"
+            data-bs-display="static"
+            >Servicios</a
+          >
+          <ul class="dropdown-menu">
+            <li class="dropdown-submenu">
+              <a
+                href="products/products"
+                data-bs-toggle="dropdown"
+                class="dropdown-item"
+                >Comprar servicio</a
+              >
+            </li>
+            <li class="dropdown-submenu">
+              <a
+                href="products/admin"
+                data-bs-toggle="dropdown"
+                class="dropdown-item"
+                >Administrar Servicios</a
+              >
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a
+            href="#"
+            id="menu"
+            data-bs-toggle="dropdown"
+            class="nav-link dropdown-toggle"
+            data-bs-display="static"
+            >Cotizaciones</a
+          >
+          <ul class="dropdown-menu">
+            <li class="dropdown-submenu">
+              <a
+                href="products/products"
+                data-bs-toggle="dropdown"
+                class="dropdown-item"
+                >Realizar cotizacion</a
+              >
+            </li>
+            <li class="dropdown-submenu">
+              <a
+                href="products/admin"
+                data-bs-toggle="dropdown"
+                class="dropdown-item"
+                >Administrar Cotizacion</a
+              >
+            </li>
+          </ul>
+        </li>
+
+         <li class="nav-item dropdown">
+          <a
+            href="#"
+            id="menu"
+            data-bs-toggle="dropdown"
+            class="nav-link dropdown-toggle"
+            data-bs-display="static"
+            >Productos</a
+          >
+          <ul class="dropdown-menu">
+            <li class="dropdown-submenu">
+              <a
+                href="products/products"
+                data-bs-toggle="dropdown"
+                class="dropdown-item"
+                >Productos</a
+              >
+            </li>
+            <li class="dropdown-submenu">
+              <a
+                href="products/admin"
+                data-bs-toggle="dropdown"
+                class="dropdown-item"
+                >Administrador Productos</a
+              >
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a
+            href="#"
+            id="menu"
+            data-bs-toggle="dropdown"
+            class="nav-link dropdown-toggle"
+            data-bs-display="static"
+            >Compras</a
+          >
+          <ul class="dropdown-menu">
+            <li class="dropdown-submenu">
+              <a
+                href="products/products"
+                data-bs-toggle="dropdown"
+                class="dropdown-item"
+                >Historial</a
+              >
+            </li>
+            <li class="dropdown-submenu">
+              <a
+                href="products/admin"
+                data-bs-toggle="dropdown"
+                class="dropdown-item"
+                >Administrar Ventas</a
+              >
+            </li>
+
+            <li class="dropdown-submenu">
+              <a
+                href="products/admin"
+                data-bs-toggle="dropdown"
+                class="dropdown-item"
+                >Administrar Compras</a
+              >
+            </li>
+          </ul>
         </li>
 
         <li class="nav-item">
-          <a href="products/add" class="nav-link">Products</a>
+          <a
+            href="sales/cart"
+            id="menu"
+            data-bs-toggle="dropdown"
+            class="nav-link d-sm-flex align-items-sm-center"
+            data-bs-display="static"
+          >
+            <fa-icon [icon]="cart_icon"></fa-icon>
+            <i class="fa-solid fa-cart-plus"></i>
+          </a>
         </li>
 
         <li class="nav-item">
@@ -89,7 +284,7 @@
           >
             <fa-icon [icon]="user_icon"></fa-icon>
             <i class="fa-solid fa-user"></i>
-            <strong class="d-none d-sm-block ms-1">User</strong>
+            <strong class="d-none d-sm-block ms-1">Usuario</strong>
           </a>
           <ul class="dropdown-menu">
             <li class="dropdown-submenu">
@@ -97,7 +292,7 @@
                 href="#"
                 data-bs-toggle="dropdown"
                 class="dropdown-item"
-                >My Profile</a
+                >Mi Perfil</a
               >
             </li>
             <li class="dropdown-submenu">
@@ -105,7 +300,8 @@
                 href="#"
                 data-bs-toggle="dropdown"
                 class="dropdown-item"
-                >Log Out</a
+                (click)="logout()"
+                >Cerrar Sesión</a
               >
             </li>
           </ul>

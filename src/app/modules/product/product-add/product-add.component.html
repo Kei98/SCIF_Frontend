@@ -4,12 +4,12 @@
       <label for="ID">ID:</label><br />
       <!-- <label id="ID">{{id}}</label><br /> -->
       <input id="ID" [value]="id" disabled />
-      <label for="Name">Name:</label><br />
+      <label for="Name">Nombre (Name):</label><br />
       <input type="text" id="Name" name="Name" required/><br />
-      <label for="Description">Description:</label><br />
+      <label for="Description">Descripción (Description):</label><br />
       <input type="text" id="Description" name="Description" /><br />
 
-      <label for="Spec">Specs Sheet:</label><br />
+      <label for="Spec">Hoja de Especificaciones (Specs Sheet):</label><br />
       <div class="dropwdown">
         <!-- <input type="text" (click)="showDropDown()" class="dropbtn"> -->
         <div id="inputGroup" class="input-group">
@@ -53,7 +53,7 @@
     </div>
 
     <div class="col-lg-6 col-md-6 col-12">
-      <label for="Quantity">Quantity:</label><br />
+      <label for="Quantity">Cantidad (Quantity):</label><br />
       <input
         type="number"
         id="Quantity"
@@ -62,18 +62,18 @@
         appearance="none"
       /><br />
 
-      <label for="Cost">Cost:</label><br />
+      <label for="Cost">Precio Compra (Cost):</label><br />
       <input type="number" id="Cost" name="Cost" min="0.00" /><br />
-      <label for="Price">Price:</label><br />
+      <label for="Price">Precio Venta (Price):</label><br />
       <input type="number" id="Price" name="Price" min="0.00" /><br />
 
-      <label for="Image">Image (link):</label><br />
+      <label for="Image">Imagen (link):</label><br />
       <input type="text" id="Image" name="Image" /><br />
       <label class="switch">
         <input type="checkbox" checked id="Active" />
         <span class="slider round"></span>
       </label>
-      <label for="Active">Active</label>
+      <label for="Active">Activo? (Active)</label>
     </div>
     <div class="col-12">
       <div class="specs_sheet" [hidden]="formSpecSheet">
@@ -85,20 +85,20 @@
         id="addButton"
         (click)="addProduct()"
       >
-        <fa-icon [icon]="faPlus"></fa-icon>Add
+        <fa-icon [icon]="faPlus"></fa-icon>Agregar
       </button>
       <button type="button" class="btn btn-warning" id="editButton" (click)="editProduct()">
-        <fa-icon [icon]="faPentoSquare"></fa-icon>Edit
+        <fa-icon [icon]="faPentoSquare"></fa-icon>Editar
       </button>
       <button type="button" class="btn btn-danger" id="deleteButton" (click)="deleteProduct()">
-        <fa-icon [icon]="faTrash"></fa-icon>Delete
+        <fa-icon [icon]="faTrash"></fa-icon>Eliminar
       </button>
       <button
         type="button"
         class="btn btn-secondary"
         (click)="clearInputsData()"
       >
-        <fa-icon [icon]="faEraser"></fa-icon>Clear
+        <fa-icon [icon]="faEraser"></fa-icon>Borrar
       </button>
     </div>
   </div>

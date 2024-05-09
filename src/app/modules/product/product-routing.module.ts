@@ -4,19 +4,23 @@ import { RouterModule, Routes } from '@angular/router';
 import { TableTestComponent } from './table-test/table-test.component';
 import { ProductAdminComponent } from './product-admin/product-admin.component';
 import { ProductCustomerComponent } from './product-customer/product-customer.component';
+import { authGuard } from '../auth/auth.guard';
 
 const routes: Routes = [
   {
     path: 'admin',
-    component: ProductAdminComponent
+    component: ProductAdminComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'products',
-    component: ProductCustomerComponent
+    component: ProductCustomerComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'test',
-    component: TableTestComponent
+    component: TableTestComponent,
+    canActivate: [authGuard]
   }
 ];
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { flattenJson } from '../../shared/data-table/data-table.component';
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
+import { CartService } from '../../sales/services/cart.service';
 // import { InputSpinner } from 'bootstrap-input-spinner/src'
 
 
@@ -15,6 +16,7 @@ export class ProductCustomerComponent implements OnInit {
   loggedObj: any = {};
   cart_icon = faCartPlus;
   popupHidden = true;
+  id: any;
   image: any;
   name: any;
   description: any;
@@ -24,7 +26,7 @@ export class ProductCustomerComponent implements OnInit {
   purchasedQty: string;
   qtyInput: any;
 
-  constructor(private prodServ: ProductService) {
+  constructor(private prodServ: ProductService, private cartServ: CartService) {
     this.purchasedQty = '1';
   }
   ngOnInit(): void {
@@ -43,17 +45,19 @@ export class ProductCustomerComponent implements OnInit {
     });
   }
 
-  addtocart(producId: number) {
-    if (this.loggedObj.custId == undefined) {
-      // this.prodServ.showLogin.next(true);
-    } else {
+  addtocart() {
+    let qty = this.getInputVal();
+    if (qty <= this.qty) {
       const obj = {
-        CartId: 0,
-        CustId: this.loggedObj.custId,
-        ProductId: producId,
-        Quantity: 1,
-        AddedDate: new Date(),
+        ID: this.id,
+        Image: this.image,
+        Name: this.name,
+        Price:this.price,
+        QuantityP: this.purchasedQty
       };
+      this.cartServ.addToCart(obj);
+      console.log(obj)
+      alert('Producto agregado al carrito')
       // this.prodServ.addtoCart(obj).subscribe((res: any)=> {
       //     if(res.result) {
       //       alert("Product Added to Cart");
@@ -64,11 +68,14 @@ export class ProductCustomerComponent implements OnInit {
       //   })
       // }
       // debugger;
+    }else {
+      alert('No hay suficientes existencias')
     }
   }
 
   showdetails(product: any) {
     this.popupHidden = false;
+    this.id = product.ID;
     this.image = product.Image;
     this.name = product.Name;
     this.description = product.Description;
@@ -80,6 +87,7 @@ export class ProductCustomerComponent implements OnInit {
 
   closePopup() {
     this.popupHidden = true;
+    this.id = null;
     this.image = null;
     this.name = null;
     this.description = null;
@@ -92,5 +100,9 @@ export class ProductCustomerComponent implements OnInit {
   resetInputVal() {
     this.purchasedQty = '1';
     (this.qtyInput as HTMLInputElement).value = this.purchasedQty;
+  }
+
+  getInputVal() {
+    return this.purchasedQty = (this.qtyInput as HTMLInputElement).value;
   }
 }

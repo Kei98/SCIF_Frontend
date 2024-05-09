@@ -28,11 +28,27 @@ export class AuthService extends SCIFService{
   }
 
   isAuthenticated(): boolean {
+    this.refreshIsLoggedIn();
     return this.isLoggedIn;
   }
 
   setToken(token:any) {
     localStorage.setItem('JWT_Token', token);
+  }
+
+  getToken() {
+    return localStorage.getItem('JWT_Token');
+  }
+
+  refreshIsLoggedIn() {
+    if(this.getToken() != null) {
+      this.isLoggedIn = true;
+      return;
+    }
+    this.isLoggedIn = false;
+    // else {
+    //   this.isLoggedIn = false;
+    // }
   }
 
   login(body:any): Observable<any> {
