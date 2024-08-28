@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-12">
+      <input
+        type="text"
+        (keyup)="searchFn($event)"
+        id="searchInput"
+        placeholder="Buscar por nombre o descripcion"
+      />
+      <app-data-table
+        [columns]="suppliers_headers"
+        [data]="suppliers_list"
+        [columnstoOmit]="columnsToOmit"
+        class="table"
+        (rowSelected)="handleData($event)"
+      ></app-data-table>
+    </div>
+  </div>

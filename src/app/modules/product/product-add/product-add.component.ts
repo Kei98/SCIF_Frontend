@@ -303,7 +303,7 @@ export class ProductAddComponent implements OnInit {
           if (res.status === 201) {
             HTMLElemets['ID'].value = res.body['product_id'];
             if(info) {
-              let infoData = this.compareOldAndActualData(['Quantity', 'Cost', 'Price'], 
+              let infoData = this.compareOldAndActualData(['Quantity', 'Cost', 'Price'],
               {}, HTMLElemets, HTMLElemets['ID'].value, 'Info');
               this.addProductInfoService(this.toActualNames(infoData));
             }
@@ -366,7 +366,7 @@ export class ProductAddComponent implements OnInit {
         if (this.receivedData['product_info'] != null) {
           idProdInfo = this.receivedData['product_info'];
         }
-        let editedProductInfo = this.compareOldAndActualData(['Quantity', 'Cost', 'Price'], 
+        let editedProductInfo = this.compareOldAndActualData(['Quantity', 'Cost', 'Price'],
         this.receivedData, HTMLElemets, idProdInfo, 'product_info');
         // console.log(editedProductInfo);
         let prodInfo = this.toActualNames(editedProductInfo);
@@ -404,7 +404,7 @@ export class ProductAddComponent implements OnInit {
       });
     }
   }
-  
+
   deleteProduct() {
     if (this.id > 0) {
       this.productService.deleteProduct(this.id).subscribe({
@@ -423,7 +423,7 @@ export class ProductAddComponent implements OnInit {
     }
   }
   setDataKeySelected(name:string) {
-    let foundKey = Object.keys(this.prod_sheet_list).find((k) => 
+    let foundKey = Object.keys(this.prod_sheet_list).find((k) =>
     this.prod_sheet_list[k]['product_spec_sheet_name'] === name);
     if (foundKey != undefined) {
       let datakey = this.prod_sheet_list[foundKey]['product_spec_sheet_id'];
@@ -439,7 +439,7 @@ export class ProductAddComponent implements OnInit {
       // console.log('key.toString()');
       // console.log(key.toString());
       if (compareFields.find((val) => val==key.toString())) {
-        
+
         // console.log('key.toString()');
         // console.log(key.toString());
         // console.log(oldData.hasOwnProperty(key));
@@ -455,9 +455,9 @@ export class ProductAddComponent implements OnInit {
             // console.log('newElement');
             updatedData = {... updatedData, [key]:newElement};
           }
-        // }  
+        // }
       }
-      
+
     }
     if (!isEmptyObject(updatedData)) {
       updatedData = {... updatedData, [idKey]: idData}

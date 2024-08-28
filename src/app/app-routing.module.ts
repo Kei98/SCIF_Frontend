@@ -6,11 +6,13 @@ import { AuthModule } from './modules/auth/auth.module';
 import { authGuard } from './modules/auth/auth.guard';
 import { ReportsModule } from './modules/reports/reports.module';
 import { SalesModule } from './modules/sales/sales.module';
+import { SupplierModule } from './modules/supplier/supplier.module';
 
 const productModule = () => import('./modules/product/product.module').then((module) => ProductModule);
 const authModule = () => import('./modules/auth/auth.module').then((module) => AuthModule);
 const reportsModule = () => import('./modules/reports/reports.module').then((module) => ReportsModule);
 const salesModule = () => import('./modules/sales/sales.module').then((module) => SalesModule);
+const supplierModule = () => import('./modules/supplier/supplier.module').then((module) => SupplierModule);
 
 const routes: Routes = [
   {
@@ -22,6 +24,12 @@ const routes: Routes = [
   {
     path: 'products',
     loadChildren: productModule,
+    canActivate: [authGuard],
+    data: {role_id: [1]}
+  },
+  {
+    path: 'suppliers',
+    loadChildren: supplierModule,
     canActivate: [authGuard]
   },
   {

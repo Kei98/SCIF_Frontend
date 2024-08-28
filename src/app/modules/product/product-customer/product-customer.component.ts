@@ -26,7 +26,7 @@ export class ProductCustomerComponent implements OnInit {
   purchasedQty: string;
   qtyInput: any;
 
-  constructor(private prodServ: ProductService, private cartServ: CartService) {
+  constructor(private prodServ: ProductService, private cartService: CartService) {
     this.purchasedQty = '1';
   }
   ngOnInit(): void {
@@ -55,7 +55,7 @@ export class ProductCustomerComponent implements OnInit {
         Price:this.price,
         QuantityP: this.purchasedQty
       };
-      this.cartServ.addToCart(obj);
+      this.cartService.addToCart(obj);
       console.log(obj)
       alert('Producto agregado al carrito')
       // this.prodServ.addtoCart(obj).subscribe((res: any)=> {

@@ -32,12 +32,25 @@ export class AuthService extends SCIFService{
     return this.isLoggedIn;
   }
 
+  isAuthorized(): boolean {
+    this.refreshIsLoggedIn();
+    return this.isLoggedIn;
+  }
+
   setToken(token:any) {
     localStorage.setItem('JWT_Token', token);
   }
 
   getToken() {
     return localStorage.getItem('JWT_Token');
+  }
+
+  setUserRole(userRoleId:any) {
+    return localStorage.setItem('USER_ROLE_ID', userRoleId);
+  }
+
+  getUserRole() {
+    return localStorage.getItem('USER_ROLE_ID');
   }
 
   refreshIsLoggedIn() {
