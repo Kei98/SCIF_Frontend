@@ -3,7 +3,7 @@
     <div class="d-flex">
       <a class="navbar-brand" href="#">
         <img
-          src="https://automatizacionsv.com/wp-content/uploads/2023/03/LocoWeb.png"
+          src="https://automatizacionsv.com/wp-content/uploads/2024/05/cropped-LocoWeb.png"
           height="50"
           alt=""
           loading="lazy"
@@ -19,7 +19,7 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbar1">
+    <div class="collapse navbar-collapse" id="navbar1" *ngIf="isAuthenticated()">
       <ul class="navbar-nav ms-auto">
 
         <!-- <li class="nav-item">
@@ -113,7 +113,7 @@
             data-bs-toggle="dropdown"
             class="nav-link dropdown-toggle"
             data-bs-display="static"
-            >Compras</a
+            >Ventas</a
           >
           <ul class="dropdown-menu">
             <li class="dropdown-submenu">
@@ -241,15 +241,6 @@
                 >Historial</a
               >
             </li>
-            <li class="dropdown-submenu">
-              <a
-                href="products/admin"
-                data-bs-toggle="dropdown"
-                class="dropdown-item"
-                >Administrar Ventas</a
-              >
-            </li>
-
             <li class="dropdown-submenu">
               <a
                 href="products/admin"

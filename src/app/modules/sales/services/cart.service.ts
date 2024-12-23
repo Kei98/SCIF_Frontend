@@ -9,9 +9,15 @@ export class CartService {
   constructor() { }
 
   addToCart(product:any) {
-    this.items.push(product);
-    console.log('this.items Service');
-    console.log(this.items);
+    // this.items.push(product);
+    // console.log('this.items Service');
+    // console.log(this.items);
+    const existingProduct = this.items.find(item => item.id === product.id);
+    if (existingProduct) {
+      existingProduct.quantity += 1;
+    } else {
+      this.items.push({ ...product, quantity: 1 });
+    }
   }
 
   getItems() {
@@ -22,6 +28,10 @@ export class CartService {
 
   getTotalPrice() {
     return this.items.reduce((total, item) => total + item.Price, 0);
+  }
+
+  removeFromCart(productId: number) {
+    this.items = this.items.filter(item => item.id !== productId);
   }
 
   clearCart() {

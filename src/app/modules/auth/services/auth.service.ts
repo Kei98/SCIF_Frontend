@@ -24,6 +24,7 @@ export class AuthService extends SCIFService{
 
   logout(): void {
     localStorage.removeItem('JWT_Token');
+    localStorage.removeItem('USER_ROLE_ID');
     this.isLoggedIn = false;
   }
 

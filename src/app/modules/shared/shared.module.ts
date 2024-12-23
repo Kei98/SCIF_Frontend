@@ -8,6 +8,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { HomeComponent } from './home/home.component';
 
 
 
@@ -16,6 +17,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     DataTableComponent,
     NavbarComponent,
     NotFoundComponent,
+    HomeComponent,
   ],
   imports: [
     CommonModule,
@@ -29,7 +31,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     DataTableComponent,
     NavbarComponent,
     NotFoundComponent,
-
+    HomeComponent,
   ]
 })
 export class SharedModule { }

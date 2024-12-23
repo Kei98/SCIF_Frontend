@@ -8,6 +8,7 @@ import { CartService } from '../services/cart.service';
 })
 export class CartComponent {
   items: any[];
+  quantities: { [key: number]: number } = {};
 
   constructor(private cartService:CartService) {
     this.items = this.cartService.getItems();
@@ -17,5 +18,23 @@ export class CartComponent {
 
   getTotalPrice() {
     return this.cartService.getTotalPrice();
+  }
+
+
+  addToCart(product: any) {
+    const quantity = this.quantities[product.id] || 1;  // Default to 1 if no quantity specified
+
+    for (let i = 0; i < quantity; i++) {
+      this.cartService.addToCart(product);
+    }
+    this.quantities[product.id] = 1;
+  }
+
+  removeFromCart(productId: number) {
+    this.items = this.items.filter(item => item.id !== productId);
+  }
+
+  clearCart() {
+    this.items = [];
   }
 }
