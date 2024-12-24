@@ -9,7 +9,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HomeComponent } from './home/home.component';
-
+import { InfoModalComponent } from './info-modal/info-modal.component';
 
 
 @NgModule({
@@ -18,6 +18,7 @@ import { HomeComponent } from './home/home.component';
     NavbarComponent,
     NotFoundComponent,
     HomeComponent,
+    InfoModalComponent,
   ],
   imports: [
     CommonModule,
@@ -32,6 +33,7 @@ import { HomeComponent } from './home/home.component';
     NavbarComponent,
     NotFoundComponent,
     HomeComponent,
+    InfoModalComponent,
   ]
 })
 export class SharedModule { }

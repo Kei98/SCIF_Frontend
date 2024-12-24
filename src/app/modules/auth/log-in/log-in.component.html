@@ -18,11 +18,13 @@
         placeholder="Contraseña"
       />
     </div>
-    <input type="button" (click)="login()" value="Iniciar Sesión">
+    <input type="button" (click)="login()" value="Log In">
+    <app-info-modal [isVisible]="showModal" [message]="message" (close)="closeModal()"></app-info-modal>
+
   </form>
 
   <div>
-    <a href="">Olvidó su contraseña?</a><br />
-    No tiene un usuario? Regístrese <a href="/register">aquí</a>
+    <a href="">Forgot your password?</a><br />
+    You don't have an user? Sign up <a href="/auth/register">here</a>
   </div>
 </div>

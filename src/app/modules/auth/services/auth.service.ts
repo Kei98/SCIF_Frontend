@@ -69,4 +69,8 @@ export class AuthService extends SCIFService{
     return this.http.post(environment.URL + 'login', body, {observe: 'response'});
   }
 
+  create(body:any): Observable<any> {
+    return this.http.post(environment.URL + 'create', body, {observe: 'response'});
+  }
+
 }

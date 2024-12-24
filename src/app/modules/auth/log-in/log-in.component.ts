@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -10,6 +11,9 @@ import { Router } from '@angular/router';
 })
 export class LogInComponent {
 
+  showModal = false;
+  message = '';
+
   constructor(
     private authService: AuthService,
     private router:Router
@@ -17,6 +21,7 @@ export class LogInComponent {
 
   login() {
     // debugger;
+    this.closeModal();
     this.authService.login(this.getInputs()).subscribe({
       next: (res) => {
         this.authService.logout();
@@ -30,13 +35,23 @@ export class LogInComponent {
         }
       },
       error: (err) => {
-        console.log(err.error);
-        alert(err.error.detail);
+        // console.log(err.error);
+        this.openModal('No user found with the provided credentials');
         this.authService.isLoggedIn = false;
         throw err;
       },
     });
 
+  }
+
+  openModal(message:any) {
+    this.message = message;
+    this.showModal = true;
+  }
+
+  closeModal() {
+    this.showModal = false;
+    this.message = '';
   }
 
   private getInputs() {

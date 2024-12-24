@@ -26,14 +26,14 @@
           <a href="products/add" class="nav-link">Products</a>
         </li> -->
 
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" hidden>
           <a
             href="#"
             id="menu"
             data-bs-toggle="dropdown"
             class="nav-link dropdown-toggle"
             data-bs-display="static"
-            >Reportes</a
+            >Reports</a
           >
           <ul class="dropdown-menu">
             <li class="dropdown-submenu">
@@ -41,7 +41,7 @@
                 href="products/products"
                 data-bs-toggle="dropdown"
                 class="dropdown-item"
-                >Inventario por Fecha</a
+                >Inventory per date</a
               >
             </li>
             <li class="dropdown-submenu">
@@ -49,7 +49,7 @@
                 href="products/admin"
                 data-bs-toggle="dropdown"
                 class="dropdown-item"
-                >Compras vs. Ventas</a
+                >Purchases vs. Sales</a
               >
             </li>
           </ul>
@@ -113,7 +113,8 @@
             data-bs-toggle="dropdown"
             class="nav-link dropdown-toggle"
             data-bs-display="static"
-            >Ventas</a
+            hidden
+            >Sales</a
           >
           <ul class="dropdown-menu">
             <li class="dropdown-submenu">
@@ -121,7 +122,7 @@
                 href="products/products"
                 data-bs-toggle="dropdown"
                 class="dropdown-item"
-                >Historial</a
+                >History</a
               >
             </li>
             <li class="dropdown-submenu">
@@ -129,7 +130,7 @@
                 href="products/admin"
                 data-bs-toggle="dropdown"
                 class="dropdown-item"
-                >Administrar Ventas</a
+                >Manage Sales</a
               >
             </li>
 
@@ -143,7 +144,7 @@
             data-bs-toggle="dropdown"
             class="nav-link dropdown-toggle"
             data-bs-display="static"
-            >Servicios</a
+            >Services</a
           >
           <ul class="dropdown-menu">
             <li class="dropdown-submenu">
@@ -151,7 +152,7 @@
                 href="products/products"
                 data-bs-toggle="dropdown"
                 class="dropdown-item"
-                >Comprar servicio</a
+                >Get a Service</a
               >
             </li>
             <li class="dropdown-submenu">
@@ -159,7 +160,7 @@
                 href="products/admin"
                 data-bs-toggle="dropdown"
                 class="dropdown-item"
-                >Administrar Servicios</a
+                >Manage Service</a
               >
             </li>
           </ul>
@@ -172,7 +173,7 @@
             data-bs-toggle="dropdown"
             class="nav-link dropdown-toggle"
             data-bs-display="static"
-            >Cotizaciones</a
+            >Quotes</a
           >
           <ul class="dropdown-menu">
             <li class="dropdown-submenu">
@@ -180,7 +181,7 @@
                 href="products/products"
                 data-bs-toggle="dropdown"
                 class="dropdown-item"
-                >Realizar cotizacion</a
+                >Get a Quote</a
               >
             </li>
             <li class="dropdown-submenu">
@@ -188,7 +189,7 @@
                 href="products/admin"
                 data-bs-toggle="dropdown"
                 class="dropdown-item"
-                >Administrar Cotizacion</a
+                >Manage Quotes</a
               >
             </li>
           </ul>
@@ -201,23 +202,24 @@
             data-bs-toggle="dropdown"
             class="nav-link dropdown-toggle"
             data-bs-display="static"
-            >Productos</a
+            href="products/products"
+            >Products</a
           >
-          <ul class="dropdown-menu">
-            <li class="dropdown-submenu">
+          <ul class="dropdown-menu" hidden>
+            <!-- <li class="dropdown-submenu">
               <a
                 href="products/products"
                 data-bs-toggle="dropdown"
                 class="dropdown-item"
                 >Productos</a
               >
-            </li>
+            </li> -->
             <li class="dropdown-submenu">
               <a
                 href="products/admin"
                 data-bs-toggle="dropdown"
                 class="dropdown-item"
-                >Administrador Productos</a
+                >Manage Products</a
               >
             </li>
           </ul>
@@ -230,7 +232,7 @@
             data-bs-toggle="dropdown"
             class="nav-link dropdown-toggle"
             data-bs-display="static"
-            >Compras</a
+            >Orders</a
           >
           <ul class="dropdown-menu">
             <li class="dropdown-submenu">
@@ -238,7 +240,7 @@
                 href="products/products"
                 data-bs-toggle="dropdown"
                 class="dropdown-item"
-                >Historial</a
+                >History</a
               >
             </li>
             <li class="dropdown-submenu">
@@ -246,7 +248,7 @@
                 href="products/admin"
                 data-bs-toggle="dropdown"
                 class="dropdown-item"
-                >Administrar Compras</a
+                >Manage Orders</a
               >
             </li>
           </ul>
@@ -275,7 +277,7 @@
           >
             <fa-icon [icon]="user_icon"></fa-icon>
             <i class="fa-solid fa-user"></i>
-            <strong class="d-none d-sm-block ms-1">Usuario</strong>
+            <strong class="d-none d-sm-block ms-1">User</strong>
           </a>
           <ul class="dropdown-menu">
             <li class="dropdown-submenu">
@@ -283,7 +285,7 @@
                 href="#"
                 data-bs-toggle="dropdown"
                 class="dropdown-item"
-                >Mi Perfil</a
+                >My Profile</a
               >
             </li>
             <li class="dropdown-submenu">
@@ -292,7 +294,7 @@
                 data-bs-toggle="dropdown"
                 class="dropdown-item"
                 (click)="logout()"
-                >Cerrar Sesión</a
+                >Log Out</a
               >
             </li>
           </ul>

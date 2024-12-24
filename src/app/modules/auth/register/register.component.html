@@ -1,4 +1,4 @@
-<form autocomplete="off">
+<form autocomplete="off" #form="ngForm">
   <div class="row">
     <div class="col-lg-4 col-md-4 col-12">
       <h2>Personal Information</h2>
@@ -8,9 +8,9 @@
         <label for="ID-Card">ID Card:</label><br />
         <input type="text" id="ID-Card" name="ID-Card" required /><br />
         <label for="Telephone">Telephone Number:</label><br />
-        <input type="text" id="Telephone" name="Telephone" /><br />
+        <input type="text" id="Telephone" name="Telephone" required/><br />
         <label for="Email">Email:</label><br />
-        <input type="text" id="Email" name="Email" /><br />
+        <input type="text" id="Email" name="Email" required/><br />
         <label class="switch">
           <input type="checkbox" checked id="SameEmail" />
           <span class="slider round"></span>
@@ -33,23 +33,26 @@
     <div class="col-lg-4 col-md-4 col-12">
       <h2>Contact Information</h2>
       <label for="ContactTelephone">Telephone:</label><br />
-      <input type="text" id="ContactTelephone" name="ContactTelephone" /><br />
+      <input type="text" id="ContactTelephone" name="ContactTelephone" required/><br />
 
       <label for="ContactName">Contact's Name:</label><br />
-      <input type="text" id="ContactName" name="ContactName" /><br />
+      <input type="text" id="ContactName" name="ContactName" required/><br />
     </div>
     <div class="col-lg-4 col-md-4 col-12">
       <h2>User/Log In Information</h2>
       <label for="Username">Username:</label><br />
-      <input type="text" id="Username" name="Username" /><br />
+      <input type="text" id="Username" name="Username" required/><br />
 
       <label for="UserEmail">Email:</label><br />
-      <input type="text" id="UserEmail" name="UserEmail" /><br />
+      <input type="text" id="UserEmail" name="UserEmail" required/><br />
       <label for="Password">Password:</label><br />
-      <input type="password" id="Password" name="Password" /><br />
-      
+      <input type="password" id="Password" name="Password" [(ngModel)]="password" (keyup)="checkPasswordsMatch()" required/><br />
+
       <label for="PasswordC">Confirm Password:</label><br />
-      <input type="password" id="PasswordC" name="PasswordC" /><br />
+      <input type="password" id="PasswordC" name="PasswordC" [(ngModel)]="confirmPassword" (keyup)="checkPasswordsMatch()" required /><br />
+      <div *ngIf="!passwordsMatch">
+        Passwords do not match.
+      </div>
       <!-- </div>
     <label for="UserRole">User Role:</label><br />
     <div class="dropwdown">
@@ -85,4 +88,5 @@
     </div>
   </div>
   <button id="createUser">Create User</button>
+  <app-info-modal [isVisible]="showModal" [message]="message" (close)="closeModal()"></app-info-modal>
 </form>
