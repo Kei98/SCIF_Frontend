@@ -2,12 +2,16 @@
     <h4>Cart</h4>
     <div *ngFor="let item of items">
         <div>
+            <br>
+            <br>
             <h5>{{ item.Name }}</h5>
             <p>Price: ${{ item.Price }} x {{ item.QuantityP }}</p>
-            <button (click)="removeFromCart(item.ID)">Remove</button>
+            <img [src]="item.Image" height="300" width="300" alt="{{ item.Name }}"/>
+            <br>
+            <button (click)="removeFromCart(item.ID)"> Remove </button>
         </div>
     </div>
-    <p>Total price: {{ getTotalPrice() }}</p>
+    <p>Total price: {{ getTotalPrice() }} $</p>
     <button *ngIf="items.length > 0" (click)="clearCart()">Clear Cart</button>
 </div>
 <ng-template #emptyCart>
