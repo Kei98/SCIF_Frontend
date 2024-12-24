@@ -4,38 +4,67 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CartService {
-  items: any[] = [];
+  private localStorageKey = 'cart_products';
+  private cartStructure = {
+    items: []
+  };
 
-  constructor() { }
-
+  constructor() {
+    // Create local storage key only if it does not exist already
+    const notExists = localStorage.getItem(this.localStorageKey) === null;
+    if (notExists) {
+      localStorage.setItem(this.localStorageKey, JSON.stringify(this.cartStructure));
+    }
+  }
   addToCart(product:any) {
     // this.items.push(product);
     // console.log('this.items Service');
     // console.log(this.items);
-    const existingProduct = this.items.find(item => item.id === product.id);
-    if (existingProduct) {
-      existingProduct.quantity += 1;
+    const currentState = this.getCurrentState();
+
+    const productExists = currentState.items.find((item:any) => {
+      return item.ID === product.ID;
+    });
+
+    if (productExists) {
+      productExists.QuantityP += parseInt(product.QuantityP);
     } else {
-      this.items.push({ ...product, quantity: 1 });
+      currentState.items.push(product);
     }
+
+    this.saveLocalStorage(currentState);
   }
 
   getItems() {
-    console.log('this.items Service');
-    console.log(this.items);
-    return this.items;
+    return JSON.parse(localStorage.getItem(this.localStorageKey) || '{}').items;
   }
 
   getTotalPrice() {
-    return this.items.reduce((total, item) => total + item.Price, 0);
+    const currentState = this.getCurrentState();
+    return currentState.items.reduce((total:any, item:any) => total + item.Price*item.QuantityP, 0);
   }
 
   removeFromCart(productId: number) {
-    this.items = this.items.filter(item => item.id !== productId);
+    const currentState = this.getCurrentState()
+    console.log(currentState.items);
+    const newItems = currentState.items.filter((item:any) => item.ID !== productId);
+    currentState.items = newItems;
+    this.saveLocalStorage(currentState);
+    return currentState.items;
   }
 
   clearCart() {
-    this.items = [];
-    return this.items;
+    const currentState = this.getCurrentState();
+    currentState.items = [];
+    this.saveLocalStorage(currentState);
+    return currentState.items;
+  }
+
+  getCurrentState() {
+    return JSON.parse(localStorage.getItem(this.localStorageKey) || '{}');
+  }
+
+  saveLocalStorage(currentState:string) {
+    localStorage.setItem(this.localStorageKey, JSON.stringify(currentState));
   }
 }

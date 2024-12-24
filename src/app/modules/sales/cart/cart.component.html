@@ -1,15 +1,15 @@
 <div *ngIf="items.length > 0; else emptyCart">
-    <h4>Carrito de compra</h4>
+    <h4>Cart</h4>
     <div *ngFor="let item of items">
         <div>
             <h5>{{ item.Name }}</h5>
-            <p>Precio: ${{ item.price }} x {{ item.quantity }}</p>
-            <button (click)="removeFromCart(item.id)">Remove</button>
+            <p>Price: ${{ item.Price }} x {{ item.QuantityP }}</p>
+            <button (click)="removeFromCart(item.ID)">Remove</button>
         </div>
     </div>
-    <p>Precio Total: {{ getTotalPrice() }}</p>
+    <p>Total price: {{ getTotalPrice() }}</p>
     <button *ngIf="items.length > 0" (click)="clearCart()">Clear Cart</button>
 </div>
 <ng-template #emptyCart>
-    <p>El carrito esta vacio</p>
+    <p>Cart is empty</p>
 </ng-template>
