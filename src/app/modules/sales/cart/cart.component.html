@@ -1,19 +1,31 @@
-<div *ngIf="items.length > 0; else emptyCart">
-    <h4>Cart</h4>
-    <div *ngFor="let item of items">
-        <div>
-            <br>
-            <br>
-            <h5>{{ item.Name }}</h5>
-            <p>Price: ${{ item.Price }} x {{ item.QuantityP }}</p>
-            <img [src]="item.Image" height="300" width="300" alt="{{ item.Name }}"/>
-            <br>
-            <button (click)="removeFromCart(item.ID)"> Remove </button>
+<div *ngIf="items.length > 0; else emptyCart" class="cart-container">
+    <h4 class="cart-title">Cart</h4>
+
+    <div *ngFor="let item of items" class="cart-item">
+
+        <div class="item-image">
+            <img [src]="item.Image" height="200" width="200" alt="{{ item.Name }}"/>
+        </div>
+
+        <div class="item-details">
+            <h5 class="item-name">{{ item.Name }}</h5>
+            <p class="item-price">Price: ${{ item.Price }} x {{ item.QuantityP }}</p>
+        </div>
+
+        <div class="item-actions">
+            <button class="remove-button" (click)="removeFromCart(item.ID)">Remove</button>
         </div>
     </div>
-    <p>Total price: {{ getTotalPrice() }} $</p>
-    <button *ngIf="items.length > 0" (click)="clearCart()">Clear Cart</button>
+
+    <div class="total-price">
+        <p>Total price: ${{ getTotalPrice() }}</p>
+    </div>
+
+    <div class="clear-cart">
+        <button *ngIf="items.length > 0" (click)="clearCart()">Clear Cart</button>
+    </div>
 </div>
+
 <ng-template #emptyCart>
-    <p>Cart is empty</p>
+    <p class="empty-cart-message">Cart is empty</p>
 </ng-template>
