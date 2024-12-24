@@ -12,8 +12,6 @@ export class CartComponent {
 
   constructor(private cartService:CartService) {
     this.items = this.cartService.getItems();
-    console.log('this.items');
-    console.log(this.items);
   }
 
   getTotalPrice() {
@@ -31,10 +29,10 @@ export class CartComponent {
   }
 
   removeFromCart(productId: number) {
-    this.items = this.items.filter(item => item.id !== productId);
+    this.items = this.cartService.removeFromCart(productId);
   }
 
   clearCart() {
-    this.items = [];
+    this.items = this.cartService.clearCart();
   }
 }

@@ -49,11 +49,11 @@ export class ProductCustomerComponent implements OnInit {
     let qty = this.getInputVal();
     if (qty <= this.qty) {
       const obj = {
-        ID: this.id,
+        ID: parseInt(this.id),
         Image: this.image,
         Name: this.name,
         Price:this.price,
-        QuantityP: this.purchasedQty
+        QuantityP: parseInt(this.purchasedQty)
       };
       this.cartService.addToCart(obj);
       console.log(obj)
