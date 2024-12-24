@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CartService } from '../services/cart.service';
+import { CheckOutComponent } from '../check-out/check-out.component';
 
 @Component({
   selector: 'app-cart',
@@ -9,6 +10,7 @@ import { CartService } from '../services/cart.service';
 export class CartComponent {
   items: any[];
   quantities: { [key: number]: number } = {};
+  showModal = false;
 
   constructor(private cartService:CartService) {
     this.items = this.cartService.getItems();

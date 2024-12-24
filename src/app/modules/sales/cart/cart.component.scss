@@ -8,6 +8,7 @@
     max-width: 1200px;
     margin: auto;
     height: 100vh;
+    gap: 30px;
 }
 
 .cart-title {
@@ -21,12 +22,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 30px;
     border: 1px solid #ddd;
     padding: 20px;
     border-radius: 10px;
-    width: 90%;
-    max-width: 1000px;
+    width: 100%;
 }
 
 .item-image {
@@ -80,13 +79,12 @@
     margin-top: 20px;
 }
 
-.clear-cart {
-    text-align: center;
-    margin-top: 20px;
-}
-
 .empty-cart-message {
     text-align: center;
     font-size: 1.2rem;
     color: #888;
+}
+
+.button-gap-10 {
+    gap: 10px;
 }

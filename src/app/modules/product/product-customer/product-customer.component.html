@@ -11,7 +11,6 @@
               <div class="card mt-2">
                 <img
                   [src]="product.Image"
-                  class="card-img-top img-fluid"
                   [alt]="product.Image.alt"
                   (click)="showdetails(product)"
                 />
@@ -23,7 +22,7 @@
                     >
                   </p>
                   <div class="row">
-                    <div class="col-6">
+                    <div class="col-6 w-100">
                       <span
                         ><i
                           class="fa-solid fa-star m-0"

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter} from '@angular/core';
 import { CartService } from '../services/cart.service';
 
 @Component({
@@ -7,9 +7,15 @@ import { CartService } from '../services/cart.service';
   styleUrls: ['./check-out.component.scss']
 })
 export class CheckOutComponent {
+    @Input() message: string = '';
+    @Input() isVisible: boolean = false;
+    @Output() close = new EventEmitter<void>()
 
   constructor(private cartService:CartService) {
+  }
 
+  closeModal() {
+    this.close.emit();
   }
 
   getTotalPrice() {

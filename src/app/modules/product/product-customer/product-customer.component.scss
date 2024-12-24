@@ -5,6 +5,8 @@
 img {
     height: 160px;
     background-size: contain;
+    object-fit: cover;
+    width: 100%;
 }
 
 .popup, .popup::after, .popup::before {
