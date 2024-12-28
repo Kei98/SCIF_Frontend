@@ -18,7 +18,4 @@ export class CheckOutComponent {
     this.close.emit();
   }
 
-  getTotalPrice() {
-    return this.cartService.getTotalPrice();
-  }
 }

@@ -25,6 +25,18 @@ export class NavbarComponent implements OnInit {
     return this.authService.getUserRole();
   }
 
+  isAdmin() {
+    return this.getUserRole() == '1';
+  }
+
+  isProjectManager() {
+    return this.getUserRole() === '3';
+  }
+
+  isAdminOrProjectManager() {
+    return this.isAdmin() || this.isProjectManager();
+  }
+
   logout() {
     this.authService.logout();
   }

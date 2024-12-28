@@ -31,7 +31,7 @@ export class SupplierService extends SCIFService{
   }
 
   addSupplier(body:any): Observable<any> {
-    return this.http.post(environment.URL + 'suppliers', body, {observe: 'response'});
+    return this.http.post(environment.URL + 'suppliers/', body, {observe: 'response'});
   }
 
   editSupplier(id:any, body:any): Observable<any> {

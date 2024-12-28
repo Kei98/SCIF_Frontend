@@ -7,6 +7,7 @@ import { SupplierRoutingModule } from './supplier-routing.module';
 import { SupplierAddComponent } from './supplier-add/supplier-add.component';
 import { SupplierGetComponent } from './supplier-get/supplier-get.component';
 import { SupplierAdminComponent } from './supplier-admin/supplier-admin.component';
+import { AuthModule } from '../auth/auth.module';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { SupplierAdminComponent } from './supplier-admin/supplier-admin.componen
     CommonModule,
     SupplierRoutingModule,
     FontAwesomeModule,
-    SharedModule
+    SharedModule,
+    AuthModule,
   ]
 })
 export class SupplierModule { }

@@ -9,6 +9,7 @@ import { JWTInterceptor, jWTInterceptorProviders } from './modules/auth/jwt.inte
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthModule } from './modules/auth/auth.module';
 // import { FlexmonsterPivotModule } from 'ngx-flexmonster';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { AuthModule } from './modules/auth/auth.module';
     AppRoutingModule,
     SharedModule,
     AuthModule,
+    BrowserAnimationsModule,
     // FlexmonsterPivotModule
   ],
   providers: [

@@ -56,7 +56,7 @@ export class SupplierGetComponent implements OnInit {
     } else {
       this.suppliers_list.forEach((elem: any) => {
         let lCaseName = elem.Name.toLowerCase();
-        let lCaseDesc = elem.Description.toLowerCase();
+        let lCaseDesc = elem.ID_Card.toLowerCase();
         if (
           lCaseName.indexOf(target.value.toLowerCase()) > -1 ||
           lCaseDesc.indexOf(target.value.toLowerCase()) > -1
@@ -73,7 +73,7 @@ export class SupplierGetComponent implements OnInit {
     // this.rowSelected.emit(data);
   }
 
-  getProductsList() {
+  getSuppliersList() {
     return this.suppliers_list;
   }
 }

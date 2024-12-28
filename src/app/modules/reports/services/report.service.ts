@@ -8,25 +8,22 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class SalesService extends SCIFService {
+export class ReportService extends SCIFService{
 
-    constructor(http:HttpClient) {
+  constructor(http:HttpClient) {
       super(http);
      }
 
-    private sharedDataSubject = new BehaviorSubject<string>(''); // Initial value is an empty string
-    sharedData$ = this.sharedDataSubject.asObservable();
-
-    setSharedData(data: any): void {
-      this.sharedDataSubject.next(data);
-    }
-
-    setHeader(){
+     setHeader(){
       let token = JSON.parse(localStorage.getItem('JWT_Token') || '{}');
       this.addHeader("Authorization", token);
     }
 
-    getPaymentMethods(): Observable<any> {
-      return this.http.get(environment.URL + 'paymentmethods.json');
+    getInventoryReport(): Observable<any> {
+      return this.http.get(environment.URL + 'inventoryreport/');
+    }
+
+    getPurchasesVsSalesReport(): Observable<any> {
+      return this.http.get(environment.URL + 'purchasesvssales/');
     }
 }

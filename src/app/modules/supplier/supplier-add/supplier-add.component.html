@@ -1,27 +1,27 @@
 <form autocomplete="off">
   <div class="row">
     <div class="col-lg-6 col-md-6 col-12">
-      <label for="supplier_id">ID:</label><br />
+      <label for="ID">ID:</label><br />
       <!-- <label id="ID">{{id}}</label><br /> -->
-      <input id="supplier_id" [value]="id" disabled />
-      <label for="supplier_id_card">Cédula (Id Card):</label><br />
-      <input id="supplier_id_card" name="supplier_id_card" required />
-      <label for="supplier_name">Nombre (Name):</label><br />
+      <input id="ID" [value]="id" disabled />
+      <label for="ID_card">Id Card:</label><br />
+      <input id="ID_Card" name="ID_Card" required />
+      <label for="Name">Name:</label><br />
       <input
         type="text"
-        id="supplier_name"
-        name="supplier_name"
+        id="Name"
+        name="Name"
         required
       /><br />
     </div>
     <div class="col-lg-6 col-md-6 col-12">
-      <label for="supplier_comment">Comentarios (Comment):</label><br />
-      <input type="text" id="supplier_comment" name="supplier_comment" /><br />
+      <label for="Comment">Comment:</label><br />
+      <input type="text" id="Comment" name="Comment" /><br />
       <label class="switch">
-        <input type="checkbox" checked id="supplier_active" />
+        <input type="checkbox" checked id="Active" />
         <span class="slider round"></span>
       </label>
-      <label for="supplier_active">Activo? (Active)</label><br />
+      <label for="Active">Active</label><br />
       <div class="col-12">
         <button
           type="button"
@@ -29,7 +29,7 @@
           id="addButton"
           (click)="addSupplier()"
         >
-          <fa-icon [icon]="faPlus"></fa-icon>Agregar
+          <fa-icon [icon]="faPlus"></fa-icon>Add
         </button>
         <button
           type="button"
@@ -37,7 +37,7 @@
           id="editButton"
           (click)="editSupplier()"
         >
-          <fa-icon [icon]="faPentoSquare"></fa-icon>Editar
+          <fa-icon [icon]="faPentoSquare"></fa-icon>Edit
         </button>
         <button
           type="button"
@@ -45,16 +45,17 @@
           id="deleteButton"
           (click)="deleteSupplier()"
         >
-          <fa-icon [icon]="faTrash"></fa-icon>Eliminar
+          <fa-icon [icon]="faTrash"></fa-icon>Delete
         </button>
         <button
         type="button"
         class="btn btn-secondary"
         (click)="clearInputsData()"
       >
-        <fa-icon [icon]="faEraser"></fa-icon>Borrar
+        <fa-icon [icon]="faEraser"></fa-icon>Clear Form
       </button>
       </div>
     </div>
   </div>
 </form>
+<app-info-modal [isVisible]="showModal" [message]="message" (close)="closeModal()"></app-info-modal>

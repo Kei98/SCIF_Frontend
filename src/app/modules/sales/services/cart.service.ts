@@ -39,6 +39,11 @@ export class CartService {
     return JSON.parse(localStorage.getItem(this.localStorageKey) || '{}').items;
   }
 
+  getSubtotal() {
+    const currentState = this.getCurrentState();
+    return currentState.items.reduce((total:any, item:any) => total + item.Price*item.QuantityP, 0);
+  }
+
   getTotalPrice() {
     const currentState = this.getCurrentState();
     return currentState.items.reduce((total:any, item:any) => total + item.Price*item.QuantityP, 0);

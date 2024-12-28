@@ -11,6 +11,7 @@ import { ProductAdminComponent } from './product-admin/product-admin.component';
 import { SpecSheetAddComponent } from './spec-sheet-add/spec-sheet-add.component';
 import { FormsModule } from '@angular/forms';
 import { ProductCustomerComponent } from './product-customer/product-customer.component';
+import { AuthModule } from '../auth/auth.module';
 // import { DataTableComponent } from '../shared/data-table/data-table.component';
 
 
@@ -30,6 +31,7 @@ import { ProductCustomerComponent } from './product-customer/product-customer.co
     FontAwesomeModule,
     SharedModule,
     FormsModule,
+    AuthModule,
   ],
   exports: [
     ProductAddComponent

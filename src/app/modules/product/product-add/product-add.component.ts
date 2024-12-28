@@ -19,6 +19,7 @@ import { ProductService } from '../services/product.service';
 import { ProductNotificationService } from '../services/product-notification-service.service';
 import { isEmpty } from 'rxjs';
 import { isEmptyObject } from 'jquery';
+import { AuthService } from '../../auth/services/auth.service';
 
 
 @Component({
@@ -41,6 +42,8 @@ export class ProductAddComponent implements OnInit {
   // @Input() selectedRow = [];
   receivedData: any = null;
   protected selectedSepec: any = null;
+  showModal = false;
+  message = '';
 
   protected inputsDataNull: any = {
     Active: 'true',
@@ -62,10 +65,12 @@ export class ProductAddComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private cdr: ChangeDetectorRef,
-    private productNotification: ProductNotificationService
+    private productNotification: ProductNotificationService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
+    this.closeModal();
     this.productService.getProductSheetData().subscribe({
       next: (res) => {
         this.prod_sheet_list = res;
@@ -282,7 +287,6 @@ export class ProductAddComponent implements OnInit {
         HTMLElemets['Price'] != null
       ) {
         info = true;
-        // Call product_info add
       }
       let spec = HTMLElemets['Spec'].getAttribute('data-key');
       let active = HTMLElemets['Active'];
@@ -297,7 +301,9 @@ export class ProductAddComponent implements OnInit {
           }
         }
       }
+      console.log(HTMLElemets);
       let preparedObj = this.toActualNames(HTMLElemets);
+      console.log(preparedObj);
       this.productService.addProduct(preparedObj).subscribe({
         next: (res) => {
           if (res.status === 201) {
@@ -307,6 +313,7 @@ export class ProductAddComponent implements OnInit {
               {}, HTMLElemets, HTMLElemets['ID'].value, 'Info');
               this.addProductInfoService(this.toActualNames(infoData));
             }
+            this.openModal('Product added successfully');
             this.productNotification.notifySuccess();
           }
         },
@@ -316,8 +323,7 @@ export class ProductAddComponent implements OnInit {
         },
       });
     } else {
-      console.log('alert');
-      alert('Name is required');
+      this.openModal('Name is required');
     }
   }
 
@@ -394,12 +400,12 @@ export class ProductAddComponent implements OnInit {
       this.productService.editProduct(this.id, preparedObj).subscribe({
         next: (res) => {
           if (res.status === 202) {
+            this.openModal('Product edited successfully');
             this.productNotification.notifySuccess();
           }
         },
         error: (err) => {
-          console.log(err.error);
-          throw err;
+          this.openModal('Error ' + err.error);
         },
       });
     }
@@ -410,14 +416,13 @@ export class ProductAddComponent implements OnInit {
       this.productService.deleteProduct(this.id).subscribe({
         next: (res) => {
           if (res.status === 202) {
-            console.log(res);
+            this.openModal('Product deleted successfully');
             this.productNotification.notifySuccess();
             (document.getElementById('Active') as HTMLInputElement).checked = false;
           }
         },
         error: (err) => {
-          console.log(err.error);
-          throw err;
+          this.openModal('Error ' + err.error);
         },
       });
     }
@@ -497,6 +502,17 @@ export class ProductAddComponent implements OnInit {
       },
     });
   }
+
+  openModal(message:any) {
+    this.message = message;
+    this.showModal = true;
+  }
+
+  closeModal() {
+    this.showModal = false;
+    this.message = '';
+  }
+
   // searchFn(event: Event, keys = []) {
   //   let target = <HTMLInputElement>event.target;
   //   let newData: any = [];

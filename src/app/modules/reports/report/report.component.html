@@ -1,5 +1,64 @@
-<fm-pivot
-  [toolbar]="true"
-  [report]="report"
->
-</fm-pivot>
+<div class="container">
+  <h2>Inventory Report</h2>
+
+  <!-- Date Range Selection -->
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Start Date</mat-label>
+      <input matInput [matDatepicker]="startPicker" [(ngModel)]="startDate" (dateChange)="filterData()" />
+      <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+      <mat-datepicker #startPicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>End Date</mat-label>
+      <input matInput [matDatepicker]="endPicker" [(ngModel)]="endDate" (dateChange)="filterData()" />
+      <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+      <mat-datepicker #endPicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Products</mat-label>
+      <mat-select [(value)]="selectedProducts" (selectionChange)="filterData()" multiple>
+        <mat-option *ngFor="let product of allProducts" [value]="product">{{ product }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+
+
+
+  <!-- Data Table -->
+  <table mat-table [dataSource]="filteredRecords">
+    <ng-container matColumnDef="Product">
+      <th mat-header-cell *matHeaderCellDef> Product Name </th>
+      <td mat-cell *matCellDef="let record">{{ record.Product }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Date">
+      <th mat-header-cell *matHeaderCellDef> Date </th>
+      <td mat-cell *matCellDef="let record">{{ record.Date }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Quantity">
+      <th mat-header-cell *matHeaderCellDef> Units Bought (+)/Sold (-) </th>
+      <td mat-cell *matCellDef="let record">{{ record.Quantity }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="bought_sold">
+      <th mat-header-cell *matHeaderCellDef> Bought/Sold </th>
+      <td mat-cell *matCellDef="let record">{{ productSummary[record.product_name].bought }} / {{ productSummary[record.product_name].sold }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <!-- Chart -->
+  <div style="height: 400px;">
+    <canvas id="myChart"></canvas>
+  </div>
+
+  <!-- Export to Excel Button -->
+  <button mat-raised-button color="primary" (click)="exportToExcel()">Export to Excel</button>
+</div>

@@ -42,8 +42,7 @@
                         ></i
                       ></span>
                       <span class="text-muted">
-                        <div *ngIf="product.Quantity <= 3">Solo</div>
-                        quedan {{ product.Quantity }}!
+                        <div *ngIf="product.Quantity <= 3">Just</div> {{ product.Quantity }} left!
                       </span>
                     </div>
                   </div>
@@ -76,17 +75,17 @@
         value="{{ purchasedQty }}"
       />
       <button class="input-group-addon btn btn-success" (click)="addtocart()">
-        <fa-icon [icon]="cart_icon"></fa-icon> Añadir al carrito
+        <fa-icon [icon]="cart_icon"></fa-icon> Add to cart
       </button>
     </span>
     <br />
     <span>
-      Existencias: {{ qty }} <br />
-      Precio por unidad: ₡{{ price }}
-      <h5>Descripción</h5>
+      Units available: {{ qty }} <br />
+      Price per unit: ₡{{ price }}
+      <h5>Description</h5>
       {{ description }}
       <br />
-      <h5>Hoja especificaciones</h5>
+      <h5>Specs Sheet</h5>
       {{ spec }}
     </span>
   </div>

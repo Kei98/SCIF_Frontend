@@ -32,13 +32,16 @@ export class SupplierAddComponent implements OnInit {
   faEraser = faEraser;
   protected id = 2;
   receivedData: any = null;
+  showModal = false;
+  message = '';
+
 
   protected inputsDataNull: any = {
-    supplier_active: 'true',
-    supplier_id_card: null,
-    supplier_name: null,
-    supplier_id: null,
-    supplier_comment: null
+    Active: 'true',
+    ID_Card: null,
+    Name: null,
+    ID: null,
+    Comment: null
   };
   protected inputsData: any = { ...this.inputsDataNull };
   // protected products_list: any[] = [];
@@ -52,11 +55,12 @@ export class SupplierAddComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.closeModal();
     this.supplierService.sharedData$.subscribe((data) => {
       this.receivedData = data;
       this.fillInputsData(this.receivedData);
     });
-    (document.getElementById('supplier_active') as HTMLInputElement).checked = true;
+    (document.getElementById('Active') as HTMLInputElement).checked = true;
   }
 
   // onFocus(event: Event) {
@@ -73,11 +77,11 @@ export class SupplierAddComponent implements OnInit {
 
   private getInputs() {
     let HTMLElemets: any = {
-      supplier_id: document.getElementById('supplier_id'),
-      supplier_id_card: document.getElementById('supplier_id_card'),
-      supplier_name: document.getElementById('supplier_name'),
-      supplier_active: document.getElementById('supplier_active'),
-      supplier_comment: document.getElementById('supplier_comment')
+      ID: document.getElementById('ID'),
+      ID_Card: document.getElementById('ID_Card'),
+      Name: document.getElementById('Name'),
+      Active: document.getElementById('Active'),
+      Comment: document.getElementById('Comment')
     };
     return HTMLElemets;
   }
@@ -133,7 +137,7 @@ export class SupplierAddComponent implements OnInit {
 
   fillInputs() {
     let HTMLElemets = this.getInputs();
-    let active = document.getElementById('supplier_active');
+    let active = document.getElementById('Active');
     for (let key in HTMLElemets) {
       if (HTMLElemets.hasOwnProperty(key)) {
         // this.inputsData[key] = HTMLElemets[key];
@@ -141,13 +145,16 @@ export class SupplierAddComponent implements OnInit {
       }
     }
     if (
-      this.inputsData['supplier_active'] != null &&
-      this.inputsData['supplier_active'].toString().toLowerCase() !=
+      this.inputsData['Active'] != null &&
+      this.inputsData['Active'].toString().toLowerCase() !=
         this.checkActive(active).toString()
     ) {
       this.toggleActive(active);
     }
-    this.id = this.inputsData['supplier_id'];
+    this.id = this.inputsData['ID'];
+    console.log(HTMLElemets);
+    console.log('inputsData');
+    console.log(this.inputsData);
     this.cdr.detectChanges();
   }
 
@@ -158,41 +165,41 @@ export class SupplierAddComponent implements OnInit {
   addSupplier() {
     let HTMLElemets = this.getInputs();
     console.log(HTMLElemets);
-    if((HTMLElemets['supplier_id_card'] as HTMLInputElement).value.trim() != '' && (HTMLElemets['supplier_name'] as HTMLInputElement).value.trim() != '') {
+    if((HTMLElemets['ID_Card'] as HTMLInputElement).value.trim() != '' && (HTMLElemets['Name'] as HTMLInputElement).value.trim() != '') {
       for (const key in HTMLElemets) {
         if (HTMLElemets.hasOwnProperty(key)) {
-          if(key != 'supplier_id') {
+          if(key != 'ID') {
             HTMLElemets[key] = HTMLElemets[key].value;
           }
         }
       }
-      // let preparedObj = this.toActualNames(HTMLElemets);
-      this.supplierService.addSupplier(HTMLElemets).subscribe({
+      let preparedObj = this.toActualNames(HTMLElemets);
+      console.log(HTMLElemets);
+      this.supplierService.addSupplier(preparedObj).subscribe({
         next: (res) => {
           if (res.status === 201) {
-            HTMLElemets['supplier_id'].value = res.body['supplier_id'];
+            this.openModal('Supplier added successfully');
+            HTMLElemets['ID'].value = res.body['supplier_id'];
             this.supplierNotification.notifySuccess();
           }
         },
         error: (err) => {
-          console.log(err.error);
-          throw err;
+          this.openModal('Error ' + err.error);
         },
       });
     }
     else {
-      console.log('alert');
-      alert('La cedula y el nombresonr requeridos');
+      this.openModal('Id Card and Name are required');
     }
  }
 
   toActualNames(object: any) {
     const {
-      supplier_id: supplier_id,
-      supplier_id_card: supplier_id_card,
-      supplier_name: supplier_name,
-      supplier_active: supplier_active,
-      supplier_comment: supplier_comment
+      ID: supplier_id,
+      ID_Card: supplier_id_card,
+      Name: supplier_name,
+      Active: supplier_active,
+      Comment: supplier_comment
     } = object;
 
     const actualObject = {
@@ -209,33 +216,29 @@ export class SupplierAddComponent implements OnInit {
   editSupplier() {
     let HTMLElemets = this.getInputs();
     console.log(HTMLElemets);
-    if((HTMLElemets['supplier_id_card'] as HTMLInputElement).value.trim() != '' && (HTMLElemets['supplier_name'] as HTMLInputElement).value.trim() != '') {
+    if((HTMLElemets['ID_Card'] as HTMLInputElement).value.trim() != '' && (HTMLElemets['Name'] as HTMLInputElement).value.trim() != '') {
+      let active = HTMLElemets['Active'];
+      (active as HTMLInputElement).value = active.checked;
       for (const key in HTMLElemets) {
         if (HTMLElemets.hasOwnProperty(key)) {
-          // if(key != 'supplier_id') {
             HTMLElemets[key] = HTMLElemets[key].value;
-          // }
         }
       }
-      // let preparedObj = this.toActualNames(HTMLElemets);
-      console.log('this.id');
-      console.log(this.id);
-      this.supplierService.editSupplier(this.id, HTMLElemets).subscribe({
+      let preparedObj = this.toActualNames(HTMLElemets);
+      this.supplierService.editSupplier(this.id, preparedObj).subscribe({
         next: (res) => {
           if (res.status === 202) {
+            this.openModal('Supplier edited successfully');
             this.supplierNotification.notifySuccess();
-            console.log('Success');
           }
         },
         error: (err) => {
-          console.log(err.error);
-          throw err;
+          this.openModal('Error ' + err.error);
         },
       });
     }
     else {
-      console.log('alert');
-      alert('La cedula y el nombre son requeridos');
+      this.openModal('Id Card and Name are required');
     }
  }
 
@@ -244,9 +247,9 @@ export class SupplierAddComponent implements OnInit {
       this.supplierService.deleteSupplier(this.id).subscribe({
         next: (res) => {
           if (res.status === 202) {
-            console.log(res);
+            this.openModal('Supplier deleted successfully');
             this.supplierNotification.notifySuccess();
-            (document.getElementById('supplier_active') as HTMLInputElement).checked = false;
+            (document.getElementById('Active') as HTMLInputElement).checked = false;
           }
         },
         error: (err) => {
@@ -275,5 +278,15 @@ export class SupplierAddComponent implements OnInit {
       updatedData = {... updatedData, [idKey]: idData}
     }
     return updatedData;
+  }
+
+  openModal(message:any) {
+    this.message = message;
+    this.showModal = true;
+  }
+
+  closeModal() {
+    this.showModal = false;
+    this.message = '';
   }
 }

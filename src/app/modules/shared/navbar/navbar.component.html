@@ -26,7 +26,7 @@
           <a href="products/add" class="nav-link">Products</a>
         </li> -->
 
-        <li class="nav-item dropdown" hidden>
+        <li class="nav-item dropdown" [hidden]="!isAdminOrProjectManager()">
           <a
             href="#"
             id="menu"
@@ -38,15 +38,15 @@
           <ul class="dropdown-menu">
             <li class="dropdown-submenu">
               <a
-                href="products/products"
+                href="reports/report"
                 data-bs-toggle="dropdown"
                 class="dropdown-item"
                 >Inventory per date</a
               >
             </li>
-            <li class="dropdown-submenu">
+            <li class="dropdown-submenu" [hidden]="!isAdmin()">
               <a
-                href="products/admin"
+                href="reports/purchase-sale-report"
                 data-bs-toggle="dropdown"
                 class="dropdown-item"
                 >Purchases vs. Sales</a
@@ -113,7 +113,7 @@
             data-bs-toggle="dropdown"
             class="nav-link dropdown-toggle"
             data-bs-display="static"
-            hidden
+            [hidden]="!isAdmin()"
             >Sales</a
           >
           <ul class="dropdown-menu">
@@ -205,15 +205,7 @@
             href="products/products"
             >Products</a
           >
-          <ul class="dropdown-menu" hidden>
-            <!-- <li class="dropdown-submenu">
-              <a
-                href="products/products"
-                data-bs-toggle="dropdown"
-                class="dropdown-item"
-                >Productos</a
-              >
-            </li> -->
+          <ul class="dropdown-menu" [hidden]="!isAdmin()">
             <li class="dropdown-submenu">
               <a
                 href="products/admin"
@@ -222,10 +214,18 @@
                 >Manage Products</a
               >
             </li>
+            <li class="dropdown-submenu">
+              <a
+                href="products/products"
+                data-bs-toggle="dropdown"
+                class="dropdown-item"
+                >Manage Spec Sheets</a
+              >
+            </li>
           </ul>
         </li>
 
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" [hidden]="isAdmin()">
           <a
             href="#"
             id="menu"
@@ -249,6 +249,43 @@
                 data-bs-toggle="dropdown"
                 class="dropdown-item"
                 >Manage Orders</a
+              >
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown" [hidden]="!isAdmin()">
+          <a
+            href="#"
+            id="menu"
+            data-bs-toggle="dropdown"
+            class="nav-link dropdown-toggle"
+            data-bs-display="static"
+            >Orders</a
+          >
+          <ul class="dropdown-menu">
+            <li class="dropdown-submenu">
+              <a
+                href="products/products"
+                data-bs-toggle="dropdown"
+                class="dropdown-item"
+                >History</a
+              >
+            </li>
+            <li class="dropdown-submenu">
+              <a
+                href="products/admin"
+                data-bs-toggle="dropdown"
+                class="dropdown-item"
+                >Manage Orders</a
+              >
+            </li>
+            <li class="dropdown-submenu">
+              <a
+                href="suppliers/admin"
+                data-bs-toggle="dropdown"
+                class="dropdown-item"
+                >Manage Suppliers</a
               >
             </li>
           </ul>
@@ -286,6 +323,14 @@
                 data-bs-toggle="dropdown"
                 class="dropdown-item"
                 >My Profile</a
+              >
+            </li>
+            <li class="dropdown-submenu" [hidden]="!isAdmin()">
+              <a
+                href="#"
+                data-bs-toggle="dropdown"
+                class="dropdown-item"
+                >Manage Users</a
               >
             </li>
             <li class="dropdown-submenu">

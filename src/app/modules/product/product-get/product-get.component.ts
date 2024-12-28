@@ -41,6 +41,7 @@ export class ProductGetComponent implements OnInit{
         this.products_property_name = DataTableComponent.getProperties(
           this.products_list[0]
         );
+        console.log(this.products_property_name);
         this.products_headers = this.products_property_name;
         this.ogData = this.products_list;
       },
