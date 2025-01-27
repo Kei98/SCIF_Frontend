@@ -1,0 +1,184 @@
+<form autocomplete="off">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-12">
+        <label for="ID">ID:</label><br />
+        <!-- <label id="ID">{{id}}</label><br /> -->
+        <input id="ID" [value]="id" disabled />
+        <label for="Name">Name:</label><br />
+        <input type="text" id="Name" name="Name" required/><br />
+        <label for="Description">Description:</label><br />
+        <input type="text" id="Description" name="Description" /><br />
+
+        <label for="Spec">Specs Sheet:</label><br />
+        <div class="dropwdown">
+          <!-- <input type="text" (click)="showDropDown()" class="dropbtn"> -->
+          <div id="inputGroup" class="input-group">
+            <fa-icon class="icon" [icon]="icon"></fa-icon>
+            <input
+              (click)="showDropDown()"
+              autocomplete="off"
+              (blur)="onBlur($event)"
+              (focus)="onFocus($event)"
+              type="text"
+              placeholder="Search.."
+              id="Spec"
+              (keyup)="filterFunction()"
+              (keyup.enter)="showDropDown()"
+              class="dropbtn"
+              data-key=""
+              required
+            />
+          </div>
+          <div id="myDropdown" class="dropdown-content position-relative">
+            <div id="dpList" class="dropdown-list w-100">
+              <ul>
+                <li
+                  *ngFor="let prod of prod_list"
+                  (click)="selectedProd(prod)"
+                >
+                  {{ prod.product_spec_sheet_name }}
+                </li>
+              </ul>
+              <button
+                class="addbtn"
+                [hidden]="addSpecButton"
+                type="button"
+                (click)="createSpecSheet()"
+              >
+                Add
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-md-6 col-12">
+        <label for="Quantity">Tax:</label><br />
+        <input
+          type="number"
+          id="Quantity"
+          name="Quantity"
+          min="0"
+          appearance="none"
+        /><br />
+
+        <label for="Cost">Discount:</label><br />
+        <input type="number" id="Cost" name="Cost" min="0.00" /><br />
+        <label for="Price">Supplier:</label><br />
+        <input type="number" id="Price" name="Price" min="0.00" /><br />
+
+        <label class="switch">
+          <input type="checkbox" checked id="Active" />
+          <span class="slider round"></span>
+        </label>
+        <label for="Active">Active?</label>
+      </div>
+      <div class="col-12">
+        <div class="specs_sheet" [hidden]="formSpecSheet">
+        </div>
+        <button
+          type="button"
+          class="btn btn-success ml-0"
+          id="addButton"
+        >
+          <fa-icon [icon]="faPlus"></fa-icon>Add
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+        >
+          <fa-icon [icon]="faEraser"></fa-icon>Clear Form
+        </button>
+      </div>
+    </div>
+    <!-- <app-product-get></app-product-get> -->
+    <!-- <div class="data-table">
+      <input
+        type="text"
+        (keyup)="searchFn($event)"
+        id="searchInput"
+        placeholder="Search Name or Description"
+      />
+      <app-data-table
+        [columns]="products_property_name"
+        [data]="products_list"
+        class="table"
+      ></app-data-table>
+    </div> -->
+  </form>
+
+<div class="datatable-container">
+    <h2>Sales Records</h2>
+    <table class="datatable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Date</th>
+          <th>Subtotal</th>
+          <th>Tax</th>
+          <th>Discount</th>
+          <th>Total</th>
+          <th>Payment Method</th>
+          <th>Status</th>
+          <th>User ID</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let purchase of purchases">
+          <td>{{ purchase.sales_id }}</td>
+          <td>{{ purchase.sales_date | date: 'yyyy-MM-dd HH:mm' }}</td>
+          <td>{{ purchase.sales_subtotal }}</td>
+          <td>{{ purchase.sales_tax }}</td>
+          <td>{{ purchase.sales_discount }}</td>
+          <td>{{ purchase.sales_amount }}</td>
+          <td>{{ purchase.payment_method }}</td>
+          <td>{{ purchase.sales_status }}</td>
+          <td>{{ purchase.user }}</td>
+          <td>
+            <button class="btn btn-sm btn-primary" (click)="selectPurchase(purchase.sales_id)">View Details</button>
+            <button class="btn btn-sm btn-danger" (click)="deletePurchase(purchase.sales_id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div  class="details-section" *ngIf="selectedPurchaseId">
+      <h4>Purchase Details for Purchase ID: {{ selectedPurchaseId }}</h4>
+      <table class="datatable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Tax</th>
+            <th>Discount</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+            <th>Service</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let detail of purchaseDetails">
+            <td>{{ detail.ID }}</td>
+            <td>
+                <input [(ngModel)]="detail.Product" />
+              </td>
+            <td>{{ detail.Price }}</td>
+            <td>{{ detail.Tax }}</td>
+            <td>
+              <input [(ngModel)]="detail.Discount" />
+            </td>
+            <td>
+                <input [(ngModel)]="detail.Quantity" />
+            </td>
+            <td>{{ detail.Subtotal }}</td>
+            <td>
+              <button class="btn btn-sm btn-success" (click)="updateDetail(detail)">Update</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <app-info-modal [isVisible]="showModal" [message]="message" (close)="closeModal()"></app-info-modal>
+

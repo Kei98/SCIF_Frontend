@@ -1,0 +1,42 @@
+.header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+  }
+
+  .add-quote-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+
+  .add-quote-button:hover {
+    background-color: #0056b3;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  tr:hover {
+    background-color: #f1f1f1;
+  }
+
+  .chat-container {
+    padding: 20px;
+    border: 1px solid #ddd;
+    margin-top: 10px;
+    background: #f9f9f9;
+  }
+
+  .chat-message {
+    margin-bottom: 10px;
+  }

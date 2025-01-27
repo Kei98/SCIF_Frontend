@@ -58,9 +58,6 @@ export class ProductAddComponent implements OnInit {
     product_info: null,
   };
   protected inputsData: any = { ...this.inputsDataNull };
-  // protected products_list: any[] = [];
-  // protected products_property_name: any;
-  // protected ogData: any;
 
   constructor(
     private productService: ProductService,
@@ -94,9 +91,6 @@ export class ProductAddComponent implements OnInit {
     let target = event.target as HTMLElement;
     let parent = target.parentElement;
     parent?.classList.add('pretty-border');
-    // let dropdown = document.getElementById('myDropdown');
-    // dropdown?.classList.add('show');
-    // dropdown?.classList.remove('dropdown-content');
   }
 
   onBlur(event: Event) {
@@ -126,14 +120,9 @@ export class ProductAddComponent implements OnInit {
     let input = document.getElementById('Spec');
     input?.setAttribute('data-key', value.product_spec_sheet_id);
     (input as HTMLInputElement).value = value.product_spec_sheet_name;
-
-    // let selectedKey = input?.getAttribute('data-key');
-    // console.log('selectedKey');
-    // console.log(selectedKey);
   }
   createSpecSheet() {
     let input = this.getSpecSheet();
-    // call component spec sheet
     this.formSpecSheet = false;
     (input as HTMLInputElement).disabled = true;
 
@@ -141,7 +130,6 @@ export class ProductAddComponent implements OnInit {
   }
 
   specSelected(spec_selected: any) {
-    // this.selectedSepec = spec_selected.product_spec_sheet_id;
     this.setSpecSheetVal(spec_selected);
     this.showDropDown();
   }
@@ -173,22 +161,12 @@ export class ProductAddComponent implements OnInit {
   }
 
   fillInputsData(data: any) {
-    // console.log('this.inputsDataNull');
-    // console.log(this.inputsDataNull);
-    // console.log('llega al add');
-    // console.log(data);
     for (let key in data) {
       if (data.hasOwnProperty(key)) {
         this.inputsData[key] = data[key];
       }
     }
     this.checkInputsData(data);
-    // console.log('this.inputsDataNull 2');
-    // console.log(this.inputsDataNull);
-    // console.log('llega al add 2');
-    // console.log(data);
-    // console.log('inputsData');
-    // console.log(this.inputsData);
     if (data != this.inputsDataNull && data != undefined && data != null && data != '') {
       this.setDataKeySelected(data.Spec);
     }
@@ -201,7 +179,6 @@ export class ProductAddComponent implements OnInit {
     let active = document.getElementById('Active');
     for (let key in HTMLElemets) {
       if (HTMLElemets.hasOwnProperty(key)) {
-        // this.inputsData[key] = HTMLElemets[key];
         (HTMLElemets[key] as HTMLInputElement).value = this.inputsData[key];
       }
     }
@@ -213,9 +190,6 @@ export class ProductAddComponent implements OnInit {
     ) {
       this.toggleActive(active);
     }
-    // if (this.receivedData.spec != undefined) {
-    //   this.setDataKeySelected(this.receivedData.Spec.value);
-    // }
     this.id = this.inputsData['ID'];
     let spec = document.getElementById('Spec');
     if (spec != undefined) {
@@ -313,7 +287,7 @@ export class ProductAddComponent implements OnInit {
               {}, HTMLElemets, HTMLElemets['ID'].value, 'Info');
               this.addProductInfoService(this.toActualNames(infoData));
             }
-            this.openModal('Product added successfully');
+            // this.openModal('Product added successfully');
             this.productNotification.notifySuccess();
           }
         },
@@ -339,9 +313,6 @@ export class ProductAddComponent implements OnInit {
       Cost: product_info_cost,
       Price: product_info_price,
       Info: product_info,
-      // SpecName: product_spec_sheet_name,
-      // SpecDir: product_spec_sheet_dir,
-      // SpecActive: product_spec_sheet_active,
     } = object;
 
     const actualObject = {
@@ -374,7 +345,6 @@ export class ProductAddComponent implements OnInit {
         }
         let editedProductInfo = this.compareOldAndActualData(['Quantity', 'Cost', 'Price'],
         this.receivedData, HTMLElemets, idProdInfo, 'product_info');
-        // console.log(editedProductInfo);
         let prodInfo = this.toActualNames(editedProductInfo);
         if (idProdInfo == 0) {
           prodInfo['product_info'] = HTMLElemets['ID'].value;
@@ -437,38 +407,21 @@ export class ProductAddComponent implements OnInit {
   }
 
   compareOldAndActualData(compareFields:Array<any>, oldData:any, actualData:any, idData:any, idKey:any) {
-    // console.log('actualData');
-    // console.log(actualData);
     let updatedData = {};
     for (const key in actualData) {
-      // console.log('key.toString()');
-      // console.log(key.toString());
       if (compareFields.find((val) => val==key.toString())) {
 
-        // console.log('key.toString()');
-        // console.log(key.toString());
-        // console.log(oldData.hasOwnProperty(key));
-        // console.log('oldData.hasOwnProperty(key)');
-        // if (oldData.hasOwnProperty(key) && actualData.hasOwnProperty(key)) {
           const oldElement = oldData[key];
           const newElement = actualData[key].value;
-          // console.log('oldElement');
-          // console.log(oldElement);
-          // console.log('newElement');
-          // console.log(newElement);
           if (oldElement != newElement) {
-            // console.log('newElement');
             updatedData = {... updatedData, [key]:newElement};
           }
-        // }
       }
 
     }
     if (!isEmptyObject(updatedData)) {
       updatedData = {... updatedData, [idKey]: idData}
     }
-    // console.log('updatedData');
-    // console.log(updatedData);
     return updatedData;
   }
 
@@ -476,6 +429,7 @@ export class ProductAddComponent implements OnInit {
     this.productService.addProductInfo(prodInfo).subscribe({
       next:(res) => {
         if (res.status === 201) {
+          this.openModal('Product added successfully');
           this.productNotification.notifySuccess();
         }
         else {
@@ -484,6 +438,7 @@ export class ProductAddComponent implements OnInit {
       },
       error: (err) => {
         console.log(err.error);
+        this.openModal('Could not add product. ' + err.error);
         throw err;
       },
     });
@@ -493,11 +448,13 @@ export class ProductAddComponent implements OnInit {
     this.productService.editProductInfo(idProdInfo, prodInfo).subscribe({
       next: (res) => {
         if (res.status === 202) {
+          this.openModal('Product modified successfully');
           this.productNotification.notifySuccess();
         }
       },
       error: (err) => {
         console.log(err.error);
+        this.openModal('Could not edit product. ' + err.error);
         throw err;
       },
     });
@@ -513,24 +470,5 @@ export class ProductAddComponent implements OnInit {
     this.message = '';
   }
 
-  // searchFn(event: Event, keys = []) {
-  //   let target = <HTMLInputElement>event.target;
-  //   let newData: any = [];
 
-  //   if (target.value.trim() == '') {
-  //     this.products_list = this.ogData;
-  //   } else {
-  //     this.products_list.forEach((elem: any) => {
-  //       let lCaseName = elem.product_name.toLowerCase();
-  //       let lCaseDesc = elem.product_description.toLowerCase();
-  //       if (
-  //         lCaseName.indexOf(target.value.toLowerCase()) > -1 ||
-  //         lCaseDesc.indexOf(target.value.toLowerCase()) > -1
-  //       ) {
-  //         newData.push(elem);
-  //       }
-  //     });
-  //     this.products_list = newData;
-  //   }
-  // }
 }

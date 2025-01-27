@@ -54,15 +54,20 @@ export class AuthService extends SCIFService{
     return localStorage.getItem('USER_ROLE_ID');
   }
 
+  setUserId(userId:any) {
+    return localStorage.setItem('USER_ID', userId);
+  }
+
+  getUserId() {
+    return localStorage.getItem('USER_ID');
+  }
+
   refreshIsLoggedIn() {
     if(this.getToken() != null) {
       this.isLoggedIn = true;
       return;
     }
     this.isLoggedIn = false;
-    // else {
-    //   this.isLoggedIn = false;
-    // }
   }
 
   login(body:any): Observable<any> {
@@ -70,7 +75,11 @@ export class AuthService extends SCIFService{
   }
 
   create(body:any): Observable<any> {
-    return this.http.post(environment.URL + 'create', body, {observe: 'response'});
+    return this.http.post(environment.URL + 'create/', body, {observe: 'response'});
+  }
+
+  reset_password(body:any): Observable<any> {
+    return this.http.post(environment.URL + 'password-reset/', body, { withCredentials: true, observe: 'response'});
   }
 
 }

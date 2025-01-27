@@ -1,0 +1,31 @@
+<div class="header">
+    <button class="add-quote-button" (click)="openAddQuote()">Add Quote</button>
+  </div>
+  <table *ngIf="!selectedQuoteId">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Date</th>
+        <th>Quote Request</th>
+        <th>User</th>
+        <th>On behalf of</th>
+        <th>Assigned User</th>
+        <th>Active</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let quote of quotes" (click)="openQuote(quote.id)">
+        <td>{{ quote.id }}</td>
+        <td>{{ quote.date }}</td>
+        <td>{{ quote.description }}</td>
+        <td>{{ quote.user }}</td>
+        <td>{{ quote.on_behalf_of }}</td>
+        <td>{{ quote.assigned_user }}</td>
+        <td>{{ quote.active }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Dynamically Load QuoteChatComponent -->
+  <app-quote-chat *ngIf="selectedQuoteId" [quoteId]="selectedQuoteId" (closeChat)="closeChat()"></app-quote-chat>
+<app-quote-add *ngIf="isAddQuoteOpen"></app-quote-add>

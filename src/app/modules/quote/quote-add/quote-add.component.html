@@ -1,0 +1,25 @@
+<div class="modal" *ngIf="isModalOpen">
+    <div class="modal-content">
+      <div *ngIf="currentQuestion === 1">
+        <p>Are you requesting this quote for yourself?</p>
+        <button (click)="handleAnswer('yes')">Yes</button>
+        <button (click)="handleAnswer('no')">No</button>
+      </div>
+
+      <div *ngIf="currentQuestion === 1.1">
+        <p>Who are you requesting the service for?</p>
+        <select [(ngModel)]="selectedCustomer">
+          <option *ngFor="let customer of customers" [value]="customer.id">{{ customer.name }}</option>
+        </select>
+        <button (click)="nextQuestion()">Next</button>
+      </div>
+
+      <div *ngIf="currentQuestion === 2">
+        <p>What's the quote you want us to do?</p>
+        <textarea [(ngModel)]="quoteRequest"></textarea>
+        <button (click)="submitQuote()">Submit</button>
+      </div>
+
+      <button class="cancel-button" (click)="cancel()">Cancel</button>
+    </div>
+  </div>

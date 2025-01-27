@@ -44,9 +44,6 @@ export class SupplierAddComponent implements OnInit {
     Comment: null
   };
   protected inputsData: any = { ...this.inputsDataNull };
-  // protected products_list: any[] = [];
-  // protected products_property_name: any;
-  // protected ogData: any;
 
   constructor(
     private supplierService: SupplierService,
@@ -62,18 +59,6 @@ export class SupplierAddComponent implements OnInit {
     });
     (document.getElementById('Active') as HTMLInputElement).checked = true;
   }
-
-  // onFocus(event: Event) {
-  //   let target = event.target as HTMLElement;
-  //   let parent = target.parentElement;
-  //   parent?.classList.add('pretty-border');
-  // }
-
-  // onBlur(event: Event) {
-  //   let target = event.target as HTMLElement;
-  //   let parent = target.parentElement;
-  //   parent?.classList.remove('pretty-border');
-  // }
 
   private getInputs() {
     let HTMLElemets: any = {
@@ -112,25 +97,12 @@ export class SupplierAddComponent implements OnInit {
   }
 
   fillInputsData(data: any) {
-    // console.log('this.inputsDataNull');
-    // console.log(this.inputsDataNull);
-    // console.log('llega al add');
-    // console.log(data);
     for (let key in data) {
       if (data.hasOwnProperty(key)) {
         this.inputsData[key] = data[key];
       }
     }
-    // this.checkInputsData(data);
-    // console.log('this.inputsDataNull 2');
-    // console.log(this.inputsDataNull);
-    // console.log('llega al add 2');
-    // console.log(data);
-    // console.log('inputsData');
-    // console.log(this.inputsData);
-    // if (data != this.inputsDataNull && data != undefined && data != null && data != '') {
-    //   this.setDataKeySelected(data.Spec);
-    // }
+
     this.fillInputs();
     this.disableButtons();
   }
@@ -140,7 +112,6 @@ export class SupplierAddComponent implements OnInit {
     let active = document.getElementById('Active');
     for (let key in HTMLElemets) {
       if (HTMLElemets.hasOwnProperty(key)) {
-        // this.inputsData[key] = HTMLElemets[key];
         (HTMLElemets[key] as HTMLInputElement).value = this.inputsData[key];
       }
     }
@@ -225,6 +196,8 @@ export class SupplierAddComponent implements OnInit {
         }
       }
       let preparedObj = this.toActualNames(HTMLElemets);
+      console.log('HTMLElemets');
+      console.log(preparedObj);
       this.supplierService.editSupplier(this.id, preparedObj).subscribe({
         next: (res) => {
           if (res.status === 202) {

@@ -30,13 +30,63 @@
       <div class="total-price">
         <p>Subtotal (Without taxes): ${{ getSubtotal() }}</p>
       </div>
+    </div>
+    <div class="d-flex justify-content-between align-items-center w-100">
+      <div class="total-price">
+        <p>Total (Taxes included): ${{ getTotal() }}</p>
+      </div>
+
+      <div class="payment">
+        <p>Payment Method: </p>
+      <div class="dropwdown">
+        <div id="inputGroup" class="input-group">
+          <input
+            (click)="showDropDown()"
+            autocomplete="off"
+            (blur)="onBlur($event)"
+            (focus)="onFocus($event)"
+            type="text"
+            placeholder="Select a Payment Method"
+            (keyup.enter)="showDropDown()"
+            id="paymentMethods"
+            class="dropbtn"
+            data-key=""
+            required
+          />
+        </div>
+        <div id="myDropdown" class="dropdown-content position-relative">
+          <div id="dpList" class="dropdown-list w-100">
+            <ul>
+              <li
+                *ngFor="let payment_method of paymentMethods"
+                (click)="paymentMethodSelected(payment_method)"
+              >
+                {{ payment_method.payment_method_name }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div class="payment">
+        <p>Payment Information: </p>
+        <p [hidden]="payment_method_selected">Select a Payment Method to get its information</p>
+        <p [hidden]="!payment_method_selected"> {{ payment_method_info_selected }}</p>
+      </div>
 
       <div class="d-flex button-gap-10">
-        <button class="btn btn-danger" *ngIf="items.length > 0" (click)="clearCart()">
+        <button
+          class="btn btn-danger"
+          *ngIf="items.length > 0"
+          (click)="clearCart()"
+        >
           Clear Cart
         </button>
-        <button class="btn btn-primary ml-1" (click)="showModal = true">Checkout</button>
+        <button class="btn btn-primary ml-1" id="checkout-btn" (click)="addSale()">
+          Checkout
+        </button>
       </div>
+
     </div>
   </div>
 
@@ -44,5 +94,5 @@
     <p class="empty-cart-message">Cart is empty</p>
   </ng-template>
 
-  <app-check-out [isVisible]="showModal"></app-check-out>
+  <app-info-modal [isVisible]="showModal" [message]="message" (close)="closeModal()"></app-info-modal>
 </div>

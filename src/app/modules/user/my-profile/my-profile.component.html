@@ -1,0 +1,105 @@
+<form autocomplete="off" #form="ngForm">
+  <div class="row">
+    <div class="col-lg-4 col-md-4 col-12">
+      <h2>Personal Information</h2>
+      <div id="personalInfo">
+        <label for="InfoID">User ID:</label><br />
+        <input type="text" id="InfoID" name="InfoID" required disabled value="3"/><br />
+        <label for="Name">Name:</label><br />
+        <input type="text" id="Name" name="Name" required value="Flor Urtena"/><br />
+        <label for="ID-Card">ID Card:</label><br />
+        <input type="text" id="ID-Card" name="ID-Card" required value="7234023532"/><br />
+        <label for="Telephone">Telephone Number:</label><br />
+        <input type="text" id="Telephone" name="Telephone" required value="27329523"/><br />
+        <label for="Email">Email:</label><br />
+        <input type="text" id="Email" name="Email" required value="flor.u@gamil.com"/><br />
+        <label for="Address">Address:</label><br />
+        <input type="text" id="Address" name="Address" value="my address"/><br />
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-4 col-12">
+      <h2>Contact Information</h2>
+      <label for="ContactTelephone">Telephone:</label><br />
+      <input
+        type="text"
+        id="ContactTelephone"
+        name="ContactTelephone"
+        required
+        value="97823464"
+      /><br />
+
+      <label for="ContactName">Contact's Name:</label><br />
+      <input type="text" id="ContactName" name="ContactName" required value="Maria Julieta"/><br />
+      <button id="createUser">
+        Add Contact
+      </button>
+    </div>
+    <div class="col-lg-4 col-md-4 col-12">
+      <h2>User/Log In Information</h2>
+      <label for="Username">Username:</label><br />
+      <input type="text" id="Username" name="Username" required value="florU"/><br />
+
+      <label for="UserEmail">Email:</label><br />
+      <input type="text" id="UserEmail" name="UserEmail" required value="flor.u@gmail.com"/><br />
+      <label for="UserRole">User Role:</label><br />
+      <div class="dropwdown">
+        <div id="inputGroup" class="input-group">
+          <input class="dropbtn" data-key="" required value="Admin" disabled />
+        </div>
+        <div id="myDropdown" class="dropdown-content position-relative">
+          <div id="dpList" class="dropdown-list w-100">
+            <ul>
+              <li
+              >
+                Customer
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <button id="createUser" (click)="changeResetPassword()">
+        Reset Password
+      </button>
+      <div *ngIf="reset_password">
+        <label for="PasswordP">Old Password:</label><br />
+        <input
+          type="password"
+          id="PasswordP"
+          name="PasswordP"
+          required
+        /><br />
+
+        <label for="Password">New Password:</label><br />
+        <input
+          type="password"
+          id="Password"
+          name="Password"
+          [(ngModel)]="password"
+          (keyup)="checkPasswordsMatch()"
+          required
+        /><br />
+
+        <label for="PasswordC">Confirm New Password:</label><br />
+        <input
+          type="password"
+          id="PasswordC"
+          name="PasswordC"
+          [(ngModel)]="confirmPassword"
+          (keyup)="checkPasswordsMatch()"
+          required
+        /><br />
+        <div *ngIf="!passwordsMatch">Passwords do not match.</div>
+        <button id="createUser" >
+          Update Password
+        </button>
+      </div>
+    </div>
+  </div>
+  <button id="createUser">Update User</button>
+  <app-info-modal
+    [isVisible]="showModal"
+    [message]="message"
+    (close)="closeModal()"
+  ></app-info-modal>
+</form>

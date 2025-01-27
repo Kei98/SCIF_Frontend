@@ -1,0 +1,27 @@
+@import '../../../../variables.scss';
+
+.app-footer {
+    background-color: $primary-color;
+    color: #000;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    border-top: 1px solid #ccc;
+  }
+
+  .footer-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .app-info,
+  .contact-info {
+    margin: 0 10px;
+  }
+
+    .contact-info p {
+      margin: 0;
+    }

@@ -28,8 +28,10 @@ export class LogInComponent {
         if(res.status === 200) {
           let token = "Token " + res.body['token'];
           let role = res.body['user']['role'];
+          let user = res.body['user']['id'];
           this.authService.setToken(token);
           this.authService.setUserRole(role);
+          this.authService.setUserId(user);
           this.authService.isLoggedIn = true;
           this.router.navigateByUrl('/products/admin');
         }

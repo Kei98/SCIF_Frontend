@@ -12,7 +12,7 @@
         <label for="Email">Email:</label><br />
         <input type="text" id="Email" name="Email" required/><br />
         <label class="switch">
-          <input type="checkbox" checked id="SameEmail" />
+          <input type="checkbox" (click)="setSameEmail()" id="SameEmail" />
           <span class="slider round"></span>
         </label>
         <label for="SameEmail">Use this email for logging in</label><br />
@@ -87,6 +87,6 @@
       </div> -->
     </div>
   </div>
-  <button id="createUser">Create User</button>
+  <button id="createUser" (click)="createUser()">Create User</button>
   <app-info-modal [isVisible]="showModal" [message]="message" (close)="closeModal()"></app-info-modal>
 </form>

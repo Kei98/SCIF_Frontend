@@ -1,3 +1,4 @@
+@import '../../../../variables.scss';
 
 .cart-container {
     display: flex;
@@ -87,4 +88,100 @@
 
 .button-gap-10 {
     gap: 10px;
+}
+
+.payment {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.addbtn:hover,
+.addbtn:focus {
+  background-color: #3e8e41;
+}
+
+.pretty-border {
+  border: 1px solid $primary-color !important;
+}
+
+.input-group {
+  padding: 12px 16px;
+  gap: 10px;
+  border: 1px solid black;
+  flex-wrap: nowrap;
+  height: 45px;
+  border-radius: 3px;
+}
+
+.input-group:hover{
+  border: 1px solid $primary-color !important;
+}
+
+
+#paymentMethods {
+  border: none;
+  outline: none;
+  height: 25px;
+  align-self: center;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+
+.dropdown-content {
+  display: none;
+  position: relative;
+  background-color: #f6f6f6;
+  opacity: 1;
+  min-width: 100% !important;
+  overflow: auto;
+  border: 1px solid #ddd;
+}
+
+.dropdown-list {
+  position: absolute;
+  background-color: #f6f6f6;
+  & li:hover {
+    background-color: #0c36f1;
+    color: white;
+  }
+  z-index: 9999;
+}
+
+.dropdown-list > li {
+  color: black !important;
+  padding: 12px 16px;
+  text-decoration: none !important;
+  display: block;
+  width: 100%;
+}
+
+.show {
+  display: block;
+}
+
+button {
+  margin: 10px;
+}
+
+
+/* Chrome, Safari, Edge, Opera */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.ml-0{
+  margin-left: 0 !important;
 }

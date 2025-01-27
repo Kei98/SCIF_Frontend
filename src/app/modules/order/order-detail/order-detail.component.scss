@@ -1,0 +1,74 @@
+.purchase-detail-form {
+    margin-top: 20px;
+  }
+
+  form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 20px;
+    max-width: 1920px;
+    margin: 0 auto;
+  }
+
+  label {
+    font-weight: bold;
+    display: block;
+  }
+
+  input, select, button {
+    padding: 8px;
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  button {
+    cursor: pointer;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  button.add {
+    background-color: #4CAF50;
+    color: white;
+  }
+
+  button.clear {
+    background-color: #9E9E9E;
+    color: white;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+
+  table, th, td {
+    border: 1px solid #ddd;
+  }
+
+  th, td {
+    padding: 10px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  .editable-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+
+  .editable-table, .editable-table th, .editable-table td {
+    border: 1px solid #ddd;
+  }
+
+  .editable-table th, .editable-table td {
+    padding: 8px;
+    text-align: left;
+  }

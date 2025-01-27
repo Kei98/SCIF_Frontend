@@ -1,0 +1,84 @@
+<body>
+    <h1>Service Details</h1>
+    <form>
+        <div>
+            <label for="service_detail_id">ID:</label>
+            <input type="text" id="service_detail_id" name="service_detail_id">
+        </div>
+        <div>
+            <label for="service_detail_date">Date:</label>
+            <input type="date" id="service_detail_date" name="service_detail_date">
+        </div>
+        <div>
+            <label for="service_detail_description">Description:</label>
+            <input type="text" id="service_detail_description" name="service_detail_description">
+        </div>
+        <div>
+            <label for="service_detail_subtotal">Subtotal:</label>
+            <input type="number" id="service_detail_subtotal" name="service_detail_subtotal" step="0.01">
+        </div>
+        <div>
+            <label for="service_detail_tax">Tax:</label>
+            <input type="number" id="service_detail_tax" name="service_detail_tax" step="0.01">
+        </div>
+        <div>
+            <label for="service_detail_discount">Discount:</label>
+            <input type="number" id="service_detail_discount" name="service_detail_discount" step="0.01">
+        </div>
+        <div>
+            <label for="service_detail_total">Total:</label>
+            <input type="number" id="service_detail_total" name="service_detail_total" step="0.01" readonly>
+        </div>
+        <div>
+            <label for="service_detail_active">Active:</label>
+            <label class="switch">
+                <input type="checkbox" id="service_detail_active" name="service_detail_active">
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div style="grid-column: span 2;">
+            <label for="service">Service:</label>
+            <select id="service" name="service">
+                <option value="1">Installation</option>
+                <option value="2">Maintenance</option>
+                <option value="3">Reparation</option>
+            </select>
+        </div>
+        <div style="grid-column: span 2; display: flex; gap: 10px; justify-content: space-between;">
+            <button type="button" class="add">Add</button>
+            <button type="button" class="edit">Edit</button>
+            <button type="button" class="delete">Delete</button>
+            <button type="reset" class="clear">Clear Form</button>
+        </div>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Subtotal</th>
+                <th>Tax</th>
+                <th>Discount</th>
+                <th>Total</th>
+                <th>Active</th>
+                <th>Service</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>2025-01-17</td>
+                <td>Example description</td>
+                <td>100.00</td>
+                <td>13.00</td>
+                <td>5.00</td>
+                <td>108.00</td>
+                <td>Yes</td>
+                <td>Installation</td>
+            </tr>
+            <!-- Additional rows can go here -->
+        </tbody>
+    </table>
+</body>

@@ -17,9 +17,6 @@ export class CartService {
     }
   }
   addToCart(product:any) {
-    // this.items.push(product);
-    // console.log('this.items Service');
-    // console.log(this.items);
     const currentState = this.getCurrentState();
 
     const productExists = currentState.items.find((item:any) => {
@@ -41,12 +38,20 @@ export class CartService {
 
   getSubtotal() {
     const currentState = this.getCurrentState();
-    return currentState.items.reduce((total:any, item:any) => total + item.Price*item.QuantityP, 0);
+    const subtotal = currentState.items.reduce((total:any, item:any) => total + item.Price*item.QuantityP, 0);
+    return Number(subtotal.toFixed(2));
   }
 
   getTotalPrice() {
     const currentState = this.getCurrentState();
-    return currentState.items.reduce((total:any, item:any) => total + item.Price*item.QuantityP, 0);
+    const totalPrice = currentState.items.reduce((total:any, item:any) => total + item.Price*item.QuantityP, 0) + this.getTaxes();
+    return Number(totalPrice.toFixed(2));
+  }
+
+  getTaxes() {
+    const currentState = this.getCurrentState();
+    const taxes = currentState.items.reduce((total:any, item:any) => total + item.Price*item.QuantityP*0.13, 0);
+    return Number(taxes.toFixed(2));
   }
 
   removeFromCart(productId: number) {

@@ -1,5 +1,11 @@
 <section id="product">
   <div class="container">
+    <input
+      type="text"
+      (keyup)="searchFn($event)"
+      id="searchInput"
+      placeholder="Search by description or name"
+    />
     <div class="row">
       <div class="col-12">
         <div class="productHeading text-center"></div>
@@ -91,3 +97,4 @@
   </div>
 </div>
 <div id="overlay"></div>
+<app-info-modal [isVisible]="showModal" [message]="message" (close)="closeModal()"></app-info-modal>

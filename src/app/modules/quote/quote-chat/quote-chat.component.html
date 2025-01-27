@@ -1,0 +1,28 @@
+<div class="chat-header">
+    <button class="back-button" (click)="goBack()">&#8592; Back</button>
+  </div>
+  <div class="chat-container">
+    <div class="chat-message" *ngFor="let message of chatMessages">
+      <div
+        [ngClass]="{ 'sent': message.sentByMe, 'received': !message.sentByMe }"
+        class="message-bubble"
+      >
+        <ng-container *ngIf="editMessageId === message.id">
+          <textarea [(ngModel)]="editMessageText"></textarea>
+          <button (click)="saveEditedMessage()">Save</button>
+          <button (click)="cancelEdit()">Cancel</button>
+        </ng-container>
+        <ng-container *ngIf="editMessageId !== message.id">
+          {{ message.message }}
+          <div *ngIf="message.sentByMe" class="message-actions">
+            <button (click)="startEditMessage(message.id, message.message)">Edit</button>
+            <button (click)="deleteMessage(message.id)">Delete</button>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  <div class="chat-input-container">
+    <textarea placeholder="Type your message..."></textarea>
+    <button class="send-button">Send</button>
+  </div>

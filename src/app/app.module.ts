@@ -4,16 +4,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './modules/shared/shared.module';
-import { JWTInterceptor, jWTInterceptorProviders } from './modules/auth/jwt.interceptor';
+import { JWTInterceptor } from './modules/auth/jwt.interceptor';
 // import { authGuard } from './modules/auth/auth.guard';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthModule } from './modules/auth/auth.module';
-// import { FlexmonsterPivotModule } from 'ngx-flexmonster';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CsrfInterceptor } from './modules/auth/csrf.interceptor';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -21,15 +22,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SharedModule,
     AuthModule,
     BrowserAnimationsModule,
-    // FlexmonsterPivotModule
   ],
   providers: [
-    // authGuard,
     { provide: HTTP_INTERCEPTORS,
       useClass: JWTInterceptor,
       multi: true
     },
-    // jWTInterceptorProviders
+    { provide: HTTP_INTERCEPTORS,
+      useClass: CsrfInterceptor,
+      multi: true
+    },
   ],
   bootstrap: [AppComponent]
 })

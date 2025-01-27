@@ -32,7 +32,7 @@ export class ReportComponent {
   filteredRecords: any[] = [];
   allRecords: any[] = [];
   startDate: Date = new Date('2024-04-01');
-  endDate: Date = new Date();
+  endDate: Date = new Date('2025-01-13');
   allProducts: string[] = [];
   productSummary: { [key: string]: { bought: number; sold: number } } = {};
   displayedColumns: string[] = ['Product', 'Date', 'Quantity'];

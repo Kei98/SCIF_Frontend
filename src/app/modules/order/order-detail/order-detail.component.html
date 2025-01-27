@@ -1,0 +1,38 @@
+<!-- purchase-detail.component.html -->
+<h2>Purchase Detail</h2>
+<form [formGroup]="detailForm">
+  <div>
+    <label for="purchase_detail_id">ID:</label>
+    <input type="text" id="purchase_detail_id" formControlName="id">
+  </div>
+  <div>
+    <label for="purchase_detail_prod_price">Product Price:</label>
+    <input type="number" id="purchase_detail_prod_price" formControlName="productPrice" step="0.01">
+  </div>
+  <div>
+    <label for="purchase_detail_tax">Tax:</label>
+    <input type="number" id="purchase_detail_tax" formControlName="tax" step="0.01">
+  </div>
+  <div>
+    <label for="purchase_detail_discount">Discount:</label>
+    <input type="number" id="purchase_detail_discount" formControlName="discount" step="0.01">
+  </div>
+  <div>
+    <label for="purchase_detail_quantity">Quantity:</label>
+    <input type="number" id="purchase_detail_quantity" formControlName="quantity">
+  </div>
+  <div>
+    <label for="purchase_detail_subtotal">Subtotal:</label>
+    <input type="number" id="purchase_detail_subtotal" formControlName="subtotal" step="0.01" readonly>
+  </div>
+  <div>
+    <label for="product">Product:</label>
+    <select id="product" formControlName="product">
+      <option *ngFor="let product of products" [value]="product.value">{{ product.name }}</option>
+    </select>
+  </div>
+  <div class="button-group">
+    <button type="button" class="add" (click)="save()">Save</button>
+    <button type="button" class="clear" (click)="cancel()">Cancel</button>
+  </div>
+</form>

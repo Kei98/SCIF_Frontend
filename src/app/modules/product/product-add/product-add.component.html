@@ -4,12 +4,12 @@
       <label for="ID">ID:</label><br />
       <!-- <label id="ID">{{id}}</label><br /> -->
       <input id="ID" [value]="id" disabled />
-      <label for="Name">Name:</label><br />
-      <input type="text" id="Name" name="Name" required/><br />
-      <label for="Description">Description:</label><br />
-      <input type="text" id="Description" name="Description" /><br />
+      <label for="PurchaseNumber">PurchaseNumber:</label><br />
+      <input type="text" id="PurchaseNumber" name="Purchase Number" /><br />
+      <label for="Date">Name:</label><br />
+      <input type="datetime" id="Name" name="Name" required value="new Date()"/><br />
 
-      <label for="Spec">Specs Sheet:</label><br />
+      <label for="Product">Product:</label><br />
       <div class="dropwdown">
         <!-- <input type="text" (click)="showDropDown()" class="dropbtn"> -->
         <div id="inputGroup" class="input-group">
@@ -108,7 +108,7 @@
       type="text"
       (keyup)="searchFn($event)"
       id="searchInput"
-      placeholder="Search Name or Description"
+      placeholder="Search Name or PurchaseNumber"
     />
     <app-data-table
       [columns]="products_property_name"

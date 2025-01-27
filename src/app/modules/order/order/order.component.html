@@ -1,0 +1,172 @@
+<body>
+  <h1>Orders</h1>
+  <form [formGroup]="purchaseForm">
+    <div>
+      <label for="purchase_id">ID:</label>
+      <input type="text" id="purchase_id" formControlName="id" readonly/>
+    </div>
+    <div>
+      <label for="purchase_date">Date:</label>
+      <input type="date" id="purchase_date" formControlName="date" />
+    </div>
+    <div>
+      <label for="purchase_description">Order ID (Given by supplier):</label>
+      <input
+        type="text"
+        id="purchase_description"
+        formControlName="description"
+      />
+    </div>
+    <div>
+      <label for="purchase_subtotal">Subtotal:</label>
+      <input
+        type="number"
+        id="purchase_subtotal"
+        formControlName="subtotal"
+        step="0.01"
+      />
+    </div>
+    <div>
+      <label for="purchase_tax">Tax:</label>
+      <input
+        type="number"
+        id="purchase_tax"
+        formControlName="tax"
+        step="0.01"
+      />
+    </div>
+    <div>
+      <label for="purchase_discount">Discount:</label>
+      <input
+        type="number"
+        id="purchase_discount"
+        formControlName="discount"
+        step="0.01"
+      />
+    </div>
+    <div>
+      <label for="purchase_total">Total:</label>
+      <input
+        type="number"
+        id="purchase_total"
+        formControlName="total"
+        step="0.01"
+      />
+    </div>
+    <div>
+      <label for="purchase_active">Active:</label>
+      <label class="switch">
+        <input type="checkbox" id="purchase_active" formControlName="active" />
+        <span class="slider"></span>
+      </label>
+    </div>
+    <div>
+      <label for="service">Supplier:</label>
+      <select id="service" formControlName="service">
+        <option *ngFor="let service of services" [value]="service.value">
+          {{ service.name }}
+        </option>
+      </select>
+    <!-- </div>
+    <button type="button" (click)="addNewService()">Add new service</button>
+    <div> -->
+      <label for="service_user_id">User:</label>
+      <input
+        type="text"
+        id="service_user_id"
+        formControlName="userId"
+        readonly
+      />
+    </div>
+    <button type="button" class="detail" (click)="togglePurchaseDetailForm()">
+      Purchase Detail
+    </button>
+  </form>
+  <div class="button-group">
+    <button type="button" class="add" (click)="add()">Add</button>
+    <button type="button" class="edit" (click)="edit()">Edit</button>
+    <button type="button" class="delete" (click)="delete()">Delete</button>
+    <button type="reset" class="clear" (click)="clearForm()">
+      Clear Form
+    </button>
+  </div>
+  <app-order-detail
+    *ngIf="showPurchaseDetail"
+    [purchaseId]="this.selectedId"
+    (onSave)="savePurchaseDetail($event)"
+    (onCancel)="togglePurchaseDetailForm()"
+  >
+  </app-order-detail>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Date</th>
+        <th>Subtotal</th>
+        <th>Tax</th>
+        <th>Discount</th>
+        <th>Total</th>
+        <th>Supplier</th>
+        <th>User</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let purchase of purchases">
+        <td>{{ purchase.id }}</td>
+        <td>{{ purchase.date }}</td>
+        <td>{{ purchase.subtotal }}</td>
+        <td>{{ purchase.tax }}</td>
+        <td>{{ purchase.discount }}</td>
+        <td>{{ purchase.total }}</td>
+        <td>{{ purchase.supplier }}</td>
+        <td>{{ purchase.user }}</td>
+        <td>
+          <button
+            type="button"
+            class="view-details"
+            (click)="toggleViewDetail()"
+          >
+            View Details
+          </button>
+          <button
+            type="button"
+            class="delete"
+            (click)="deletePurchase(purchase.id)"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+      <tr *ngIf="viewdetail" class="editable-row" id="editable-row-1">
+        <td colspan="9">
+            <table class="editable-table" id="table-1">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Tax</th>
+                        <th>Discount</th>
+                        <th>Subtotal</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" value="1"></td>
+                        <td><input type="text" value="Product 2"></td>
+                        <td><input type="number" value="1"></td>
+                        <td><input type="number" value="50.00"></td>
+                        <td><input type="number" value="5.00"></td>
+                        <td><input type="number" value="2.00"></td>
+                        <td><input type="number" value="53.00"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+    </tbody>
+  </table>
+</body>

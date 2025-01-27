@@ -1,0 +1,79 @@
+<div class="datatable-container">
+    <h2>Sales Records</h2>
+    <table class="datatable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Date</th>
+          <th>Subtotal</th>
+          <th>Tax</th>
+          <th>Discount</th>
+          <th>Total</th>
+          <th>Payment Method</th>
+          <th>Status</th>
+          <th>User ID</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let sale of sales">
+          <td>{{ sale.sales_id }}</td>
+          <td>{{ sale.sales_date | date: 'yyyy-MM-dd HH:mm' }}</td>
+          <td>{{ sale.sales_subtotal }}</td>
+          <td>{{ sale.sales_tax }}</td>
+          <td>{{ sale.sales_discount }}</td>
+          <td>{{ sale.sales_amount }}</td>
+          <td>{{ sale.payment_method }}</td>
+          <td>{{ sale.sales_status }}</td>
+          <td>{{ sale.user }}</td>
+          <td>
+            <button class="btn btn-sm btn-primary" (click)="selectSale(sale.sales_id)">View Details</button>
+            <button class="btn btn-sm btn-danger" (click)="deleteSale(sale.sales_id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div  class="details-section" *ngIf="selectedSaleId">
+      <h4>Sales Details for Sale ID: {{ selectedSaleId }}</h4>
+      <table class="datatable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Tax</th>
+            <th>Discount</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+            <th>Service</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let detail of salesDetails">
+            <td>{{ detail.ID }}</td>
+            <td>
+                <input [(ngModel)]="detail.Product" />
+              </td>
+            <td>{{ detail.Price }}</td>
+            <td>{{ detail.Tax }}</td>
+            <td>
+              <input [(ngModel)]="detail.Discount" />
+            </td>
+            <td>
+                <input [(ngModel)]="detail.Quantity" />
+            </td>
+            <td>{{ detail.Subtotal }}</td>
+            <td>
+                <input [(ngModel)]="detail.Service" />
+              </td>
+            <td>
+              <button class="btn btn-sm btn-success" (click)="updateDetail(detail)">Update</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <app-info-modal [isVisible]="showModal" [message]="message" (close)="closeModal()"></app-info-modal>
+

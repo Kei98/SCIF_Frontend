@@ -29,4 +29,24 @@ export class SalesService extends SCIFService {
     getPaymentMethods(): Observable<any> {
       return this.http.get(environment.URL + 'paymentmethods.json');
     }
+
+    addSale(body:any): Observable<any> {
+      return this.http.post(environment.URL + 'sales/', body, {observe: 'response'});
+    }
+
+    getSales(): Observable<any> {
+      return this.http.get(environment.URL + 'sales-list');
+    }
+
+    getSalesDetails(sales_id: number): Observable<any> {
+      return this.http.get(environment.URL + `sales/${sales_id}/details`);
+    }
+
+    deleteSale(sales_id: number): Observable<any> {
+      return this.http.delete(environment.URL + `sales/${sales_id}`, {observe: 'response'});
+    }
+
+    updateSalesDetail(detail_id: number, data: any): Observable<any> {
+      return this.http.put(environment.URL + `sales-details/${detail_id}/`, data, {observe: 'response'});
+    }
 }
